@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background Video View -->
+    <VideoView
+        android:id="@+id/videoViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <!-- Email Label and Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:hintTextColor="@color/Green"
+            android:textColorHint="@color/Green"
+            app:counterMaxLength="30">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Email_Uname"
+                android:fontFamily="@font/afacad"
+                android:textSize="20sp"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/Green" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Password Label and Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/Green"
+            app:hintTextColor="@color/Green"
+            android:textColorHint="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/LastPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Password"
+                android:fontFamily="@font/afacad"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:textSize="20sp"
+                android:singleLine="true"
+                android:textColor="@color/Green" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Forgot Password -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_forgot_password"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="201dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="35dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/afacad"
+                android:padding="0dp"
+                android:text="@string/forgotpassword"
+                android:textColor="@color/YGreen"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+
+        <!-- ProgressBar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center" />
+
+        <!-- Login Button -->
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="258dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/btnlogin"
+            android:padding="12dp"
+            android:text="@string/login"
+            android:textColor="@color/YGreen" />
+
+        <!-- Register Text -->
+        <TextView
+            android:id="@+id/Register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/afacad"
+            android:text="@string/reg"
+            android:textColor="@color/LBrown"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Google Sign-In Button -->
+        <Button
+            android:id="@+id/google_sign_in_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/google"
+            android:contentDescription="@string/google_sign_in"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@color/YGreen" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbg">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="212dp"
+        android:layout_height="212dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/logo_description"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/final_logo" />
+
+
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/poppinsregular"
+        android:gravity="center"
+        android:textColor="@color/Green"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <!-- Motivational Text -->
+    <TextView
+        android:id="@+id/motivationalText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hello"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppinsregular"
+        android:gravity="center"
+        android:text="@string/subtitle"
+        android:textColor="@color/Green"
+        android:textSize="18sp" />
+
+    <!-- Calculate Button -->
+    <Button
+        android:id="@+id/calculate"
+        android:layout_width="231dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="144dp"
+        android:background="@drawable/calculate"
+        android:fontFamily="@font/afacad"
+        android:text="@string/getstart"
+        android:textAllCaps="false"
+        android:textColor="@color/Brown"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+</RelativeLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/vc"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/vc_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Firstpage"
+        tools:targetApi="34">
+        <activity
+            android:name=".Question4"
+            android:exported="false" />
+        <activity
+            android:name=".Question3"
+            android:exported="false" />
+        <activity
+            android:name=".Question2"
+            android:exported="false" />
+        <activity
+            android:name=".Question1"
+            android:exported="false" />
+        <activity
+            android:name=".Chall1"
+            android:exported="false" />
+        <activity
+            android:name=".Challenges"
+            android:exported="false" />
+        <activity
+            android:name=".RewardTwo"
+            android:exported="false" />
+        <activity
+            android:name=".LearnMore"
+            android:exported="false" />
+        <activity
+            android:name=".Wani_Ent"
+            android:exported="false" />
+        <activity
+            android:name=".PlayMaker_Ent"
+            android:exported="false" />
+        <activity
+            android:name=".wani_circle"
+            android:exported="false" />
+        <activity
+            android:name=".Masugid_Ent"
+            android:exported="false" />
+        <activity
+            android:name=".navbar"
+            android:exported="false" />
+        <activity
+            android:name=".homepage"
+            android:exported="false" />
+        <activity
+            android:name=".homepage"
+            android:exported="false" />
+        <activity
+            android:name=".Chall"
+            android:exported="false" />
+        <activity
+            android:name=".AfterQuestion"
+            android:exported="false" />
+        <activity
+            android:name=".Questions"
+            android:exported="false" />
+        <activity
+            android:name=".Signin"
+            android:exported="false" />
+        <activity
+            android:name=".verify_email"
+            android:exported="false" />
+        <activity
+            android:name=".Loadingpage"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

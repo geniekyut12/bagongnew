@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <color name="LGreen">#ACB992</color>
+        <color name="LBrown">#E9E5D6</color>
+        <color name="Brown">#362706</color>
+        <color name="Green">#464E2E</color>
+        <color name="YGreen">#f6fff3</color>
+        <color name="NudeGreen">#737b5c</color>
+        <color name="BGreen">#ABC992</color>
+        <color name="q3bg">#D9D9D9</color>
+        <color name="LTGreen">#E3EED4</color>
+        <color name="RBBG"> #F8FFF5</color>
+        <color name="mainbg"> #F9FFF1</color>
+        <color name="entsoc"> #452C13</color>
+        <color name="black"> #000000 </color>
+        <color name="BrightGreen"> #1A8433</color>
+        <color name="green">#4CAF50</color>
+        <color name="quesbg"> #E3EED4</color>
+</resources>

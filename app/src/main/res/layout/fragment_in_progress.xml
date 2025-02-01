@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Challenge Card 1 -->
+        <LinearLayout
+            android:id="@+id/challengeCard1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvChallengeTitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day1"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvChallengeDescription1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day1text"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnStartChallenge1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:backgroundTint="@color/BrightGreen"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+        <!-- Challenge Card 2 -->
+        <LinearLayout
+            android:id="@+id/challengeCard2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvChallengeTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day2"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvChallengeDescription2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day2text"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnStartChallenge2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:backgroundTint="@color/BrightGreen"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+        <!-- Challenge Card 3 -->
+        <LinearLayout
+            android:id="@+id/challengeCard3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvChallengeTitle3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day3"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvChallengeDescription3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day3text"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnStartChallenge3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:backgroundTint="@color/BrightGreen"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+        <!-- Challenge Card 4 -->
+        <LinearLayout
+            android:id="@+id/challengeCard4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvChallengeTitle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day4"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvChallengeDescription4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day4text"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnStartChallenge4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:backgroundTint="@color/BrightGreen"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+        <!-- Challenge Card 5 -->
+        <LinearLayout
+            android:id="@+id/challengeCard5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvChallengeTitle5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day5"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvChallengeDescription5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day5text"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnStartChallenge5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:backgroundTint="@color/BrightGreen"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

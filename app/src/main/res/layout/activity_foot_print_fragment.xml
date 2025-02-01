@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EAF4E2"
+    android:padding="16dp">
+
+    <!-- Header Section -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:fontFamily="sans-serif-medium" />
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_profile"
+            android:layout_marginEnd="8dp"
+            android:onClick="onProfileImageClick"
+            android:contentDescription="Profile"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/subHeaderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:text="@string/text"
+        android:textColor="#000"
+        android:textSize="14sp" />
+
+    <!-- Circular ProgressBar -->
+    <FrameLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp">
+
+        <ProgressBar
+            android:id="@+id/circularProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/circular_progress"
+            android:max="200"
+            android:progress="120"
+            style="?android:attr/progressBarStyleHorizontal" />
+    </FrameLayout>
+
+    <!-- Breakdown Section -->
+    <TextView
+        android:id="@+id/breakdownHeader"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/breakdown"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif"
+        android:textColor="#000"
+        android:paddingTop="16dp" />
+
+    <!-- Underline -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#464E2E"
+        android:layout_marginTop="4dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="8dp">
+
+        <!-- First LinearLayout for Transportation -->
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="13dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:backgroundTint="#6ABF69"
+                android:background="@drawable/rounded_dot" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Transportation"
+                android:textSize="14sp"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/co1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="CO1"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:gravity="end" />
+
+
+            <ImageView
+                android:id="@+id/arrowButton1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/right_arrow"
+                android:contentDescription="Arrow"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_centerInParent="true"
+                android:onClick="onArrowButtonClick"
+                app:tint="#000000" />
+        </LinearLayout>
+
+        <!-- Second LinearLayout for Food -->
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="13dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:backgroundTint="#88C057"
+                android:background="@drawable/rounded_dot" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Food"
+                android:textSize="14sp"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/co2"
+                android:layout_width="199dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="CO2"
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/arrowButton2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/right_arrow"
+                android:contentDescription="Arrow"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_centerInParent="true"
+                android:onClick="onArrowButtonClick"
+                app:tint="#000000" />
+        </LinearLayout>
+
+        <!-- Third LinearLayout for Food Waste -->
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="13dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:backgroundTint="#A1D683"
+                android:background="@drawable/rounded_dot" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Food Waste"
+                android:textSize="14sp"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/co3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="CO3"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:gravity="end" />
+
+            <ImageView
+                android:id="@+id/arrowButton3"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/right_arrow"
+                android:contentDescription="Arrow"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_centerInParent="true"
+                android:onClick="onArrowButtonClick"
+                app:tint="#000000" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

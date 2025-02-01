@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileTermsAndCondition">
+
+    <!-- Toolbar with back button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="#ffffff"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:tint="@color/Green"
+            android:src="@drawable/left_arrow"
+            android:contentDescription="Back button"
+            android:padding="4dp" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/termsacondition"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Section 1 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/noone"
+                android:textSize="16sp"
+                android:textColor="#4CAF50"
+                android:fontFamily="sans-serif-medium"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textone"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000" />
+
+            <!-- Section 2 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notwo"
+                android:textSize="16sp"
+                android:textColor="#4CAF50"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txttwo"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000" />
+
+            <!-- Add a bulleted list -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/texttwosss"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/texttwos"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000"
+                android:paddingTop="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/texttwo"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000"
+                android:paddingTop="4dp" />
+
+            <!-- Add other sections similarly -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nothree"
+                android:textSize="16sp"
+                android:textColor="#4CAF50"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textthree"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nofour"
+                android:textSize="16sp"
+                android:textColor="#4CAF50"
+                android:fontFamily="sans-serif-medium"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textfour"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="#000000" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

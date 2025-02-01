@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f1ec"
+    tools:context=".Wani_Ent">
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/waniFooter">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Rounded Header -->
+        <LinearLayout
+            android:id="@+id/waniHeader"
+            android:layout_width="415dp"
+            android:layout_height="308dp"
+            android:layout_marginTop="-120dp"
+            android:background="@drawable/wani_entbg"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/wani_logo"
+            android:contentDescription="@string/wanilogo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="-75dp"
+            android:src="@drawable/wani_circle"
+            app:layout_constraintTop_toBottomOf="@id/waniHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/waniDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/Wani"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/wani_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/wani_waff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/afacad"
+            android:text="@string/sawaff"
+            android:textColor="#777777"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/waniDes" />
+
+        <!-- Group Image -->
+        <ImageView
+            android:id="@+id/wanipic"
+            android:contentDescription="@string/wanipic"
+            android:layout_width="450dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/wanipic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wani_waff" />
+
+        <TextView
+            android:id="@+id/waniD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="left"
+            android:lineSpacingExtra="4dp"
+            android:padding="16dp"
+            android:text="@string/Wani"
+            android:textColor="@color/entsoc"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wanipic" />
+
+        <TextView
+            android:id="@+id/Wanides"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="fill_horizontal"
+            android:lineSpacingExtra="4dp"
+            android:padding="16dp"
+            android:text="@string/wanidesc"
+            android:textColor="@color/entsoc"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wanipic" />
+
+        <TextView
+            android:id="@+id/waniProdN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/waniprod"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/Wanides"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Products -->
+
+        <!-- Sawaff 1 -->
+        <ImageView
+            android:id="@+id/saw1"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:src="@drawable/sawaff1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/waniProdN" />
+
+        <TextView
+            android:id="@+id/waniPromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/wanipromo"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/saw1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/WaniDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:gravity="fill_horizontal"
+            android:text="@string/churrodesc"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/waniPromo"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Sawaff 2 -->
+        <ImageView
+            android:id="@+id/saw2"
+            android:layout_width="750dp"
+            android:layout_height="450dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/sawaff2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/WaniDes" />
+
+        <!-- Inquiry Label -->
+        <TextView
+            android:id="@+id/waniEnq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:layout_marginStart="18dp"
+            android:fontFamily="@font/afacad"
+            android:text="@string/enqEnt"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saw2" />
+
+        <ImageView
+            android:id="@+id/wani_ig"
+            android:contentDescription="@string/waniIG"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ig_icon"
+            app:layout_constraintTop_toBottomOf="@id/waniEnq"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0." />
+
+        <TextView
+            android:id="@+id/wani_ig_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/waniIG"
+            android:textSize="18sp"
+            android:textColor="@color/entsoc"
+            android:fontFamily="@font/afacad"
+            app:layout_constraintTop_toBottomOf="@id/waniEnq"
+            app:layout_constraintStart_toEndOf="@id/wani_ig" />
+
+        <!-- Phone Section -->
+        <ImageView
+            android:id="@+id/wani_num"
+            android:contentDescription="@string/waniPhone"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/phone_icon"
+            app:layout_constraintTop_toBottomOf="@id/wani_ig_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.05" />
+
+        <TextView
+            android:id="@+id/wani_num_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/wani_num"
+            android:textSize="18sp"
+            android:textColor="@color/entsoc"
+            android:fontFamily="@font/afacad"
+            app:layout_constraintTop_toBottomOf="@id/wani_ig_text"
+            app:layout_constraintStart_toEndOf="@id/wani_num" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+    <!-- Footer outside ScrollView -->
+    <LinearLayout
+    android:id="@+id/waniFooter"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:background="@drawable/wani_footer"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

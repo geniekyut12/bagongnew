@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TermsCond" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/YGreen</item>
+        <item name="colorPrimaryDark">@color/LGreen</item>
+        <item name="colorAccent">@color/LGreen</item>
+    </style>
+
+    <!-- Style for background image -->
+    <style name="AppTheme.BackgroundImageStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/calculate</item>
+    </style>
+
+    <!-- res/values/styles.xml -->
+    <style name="CustomRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/Green</item> <!-- Green circle color -->
+        <item name="android:textColor">@color/LBrown</item> <!-- Text color -->
+    </style>
+
+</resources>

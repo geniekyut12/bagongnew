@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quesbg"
+    android:padding="16dp"
+    tools:context=".Question1">
+
+        <!-- Header with ImageView and TextView -->
+
+    <LinearLayout
+        android:id="@+id/foodLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="40dp"
+            android:contentDescription="@string/q1"
+            android:src="@drawable/pmlogo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="@string/personal"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/fillup"
+            android:textColorHint="@color/Green"
+            app:counterMaxLength="20"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtFname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:fontFamily="@font/afacad"
+                android:hint="@string/namee"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/Green"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Last Name Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/fillup"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/afacad"
+                android:layout_marginStart="11dp"
+                android:hint="@string/Age"
+                android:inputType="text"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/Green"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Username Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/fillup"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/afacad"
+                android:layout_marginStart="11dp"
+                android:hint="@string/Username"
+                android:inputType="text"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/Green"
+                android:textSize="20sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nextbtn" />
+    </LinearLayout>
+</RelativeLayout>

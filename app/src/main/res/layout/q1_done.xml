@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@drawable/q1pop_des">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/earth_home"
+            android:contentDescription="Warning Image"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/co2Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/co2"
+            android:textSize="30sp"
+            android:textColor="@color/Green"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/dialogText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/earthhome"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/q1DoneBtn"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/BrightGreen"
+        android:text="OK"
+        android:textColor="#FFFFFF" />
+    </LinearLayout>

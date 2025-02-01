@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Video Background -->
+    <VideoView
+        android:id="@+id/videoViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+    <!-- Form Layout (Inside LinearLayout) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <!-- First Name Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green"
+            app:counterMaxLength="20">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtFname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Firstname"
+                android:fontFamily="@font/afacad"
+                android:lines="1"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textSize="20sp"
+                android:maxLength="20"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Last Name Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtLname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Lastname"
+                android:fontFamily="@font/afacad"
+                android:textSize="20sp"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Username Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Username"
+                android:fontFamily="@font/afacad"
+                android:textSize="20sp"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Email Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green"
+            app:counterMaxLength="30">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Email"
+                android:fontFamily="@font/afacad"
+                android:textSize="20sp"
+                android:maxLength="99"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Student ID Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green"
+            app:counterMaxLength="30">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/student_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/student_id"
+                android:fontFamily="@font/afacad"
+                android:textSize="20sp"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Password Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/Green"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtpass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Password"
+                android:fontFamily="@font/afacad"
+                android:inputType="textPassword"
+                android:textSize="20sp"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Confirm Password Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/Green"
+            android:textColorHint="@color/Green"
+            app:hintTextColor="@color/Green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtconpass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Confirmpassword"
+                android:fontFamily="@font/afacad"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:textColor="@color/Green"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Terms & Conditions Checkbox -->
+        <CheckBox
+            android:id="@+id/checkboxTerms"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:textSize="14sp"
+            android:text="@string/I_agree_to_the_Terms_and_Conditions"
+            android:fontFamily="@font/afacad"
+            android:textColor="@color/LGreen"
+            android:theme="@style/TermsCond"
+            android:contentDescription="@string/terms_conditions_description" />
+
+        <!-- Sign Up Button -->
+        <Button
+            android:id="@+id/SignUpbtn"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btnsignin"
+            android:padding="12dp"
+            android:text="@string/SignUp"
+            android:fontFamily="@font/afacad"
+            android:textColor="@color/LBrown" />
+
+        <!-- Login Text -->
+        <TextView
+            android:id="@+id/loginNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/afacad"
+            android:text="@string/Do_have_an_account_Login"
+            android:textColor="@color/LGreen"
+            android:textSize="18sp"
+            android:textStyle="italic|normal" />
+
+        <!-- ProgressBar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</RelativeLayout>

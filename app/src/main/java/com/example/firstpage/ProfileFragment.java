@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
@@ -54,7 +51,10 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Set up listeners
+        // Check if the user is logged in and fetch user data
+        fetchUserData();
+
+        // Set up listeners for buttons
         setupListeners();
     }
 
@@ -74,6 +74,39 @@ public class ProfileFragment extends Fragment {
         deleteAccountButton.setOnClickListener(v -> showDeleteConfirmationDialog());
         logoutButton.setOnClickListener(v -> handleLogout());
     }
+
+    private void fetchUserData() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            String username = mAuth.getCurrentUser().getDisplayName(); // Use display name as username
+
+            DocumentReference userDocRef = db.collection("users").document(username); // Query using username
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    String firstName = task.getResult().getString("firstName");
+                    String email = task.getResult().getString("email");
+
+                    if (firstName != null && email != null) {
+                        titleName.setText(firstName);
+                        titleEmail.setText(email);
+                    } else {
+                        Log.d("ProfileFragment", "User data is null or empty.");
+                        Toast.makeText(getContext(), "User data not found.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.d("ProfileFragment", "Failed to retrieve user data: " + task.getException());
+                    Toast.makeText(getContext(), "Failed to fetch user data.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Log.d("ProfileFragment", "No user logged in.");
+            Toast.makeText(getContext(), "No user logged in.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     private void navigateToActivity(Class<?> targetActivity) {
         Intent intent = new Intent(getActivity(), targetActivity);
@@ -96,50 +129,26 @@ public class ProfileFragment extends Fragment {
         }
 
         String userId = mAuth.getCurrentUser().getUid();
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 30);
-        Date deletionDate = calendar.getTime();
-
-        Map<String, Object> updates = new HashMap<>();
-        updates.put("isDeleted", true);
-        updates.put("deletionDate", deletionDate);
-
-        disableDeleteAction();
-
-        db.collection("users").document(userId)
-                .update(updates)
-                .addOnSuccessListener(aVoid -> {
-                    titleName.setText("Account Deletion Pending");
-                    titleEmail.setText("Restore your account within 30 days.");
-                    Toast.makeText(requireContext(), "Account marked for deletion.", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    enableDeleteAction();
-                    Toast.makeText(requireContext(), "Failed to delete account. Try again.", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                });
+        // Add deletion logic here, possibly using Firebase functions to delete user data from Firestore and FirebaseAuth
+        mAuth.getCurrentUser().delete().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(requireContext(), "Account deleted successfully.", Toast.LENGTH_SHORT).show();
+                handleLogout(); // Logout after account deletion
+            } else {
+                Toast.makeText(requireContext(), "Failed to delete account.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void disableDeleteAction() {
-        deleteAccountButton.setEnabled(false);
-    }
-
-    private void enableDeleteAction() {
-        deleteAccountButton.setEnabled(true);
-    }
-
-    // Log Out Button Handler
     private void handleLogout() {
-        // Clear the user session (SharedPreferences)
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", false);  // Set isLoggedIn to false
-        editor.apply();  // Apply changes
+        editor.putBoolean("isLoggedIn", false);
+        editor.apply();
 
-        // Navigate back to MainActivity (or Signin) after logout
-        Intent intent = new Intent(getActivity(), MainActivity.class);  // Navigate to MainActivity
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);  // Clear back stack
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        getActivity().finish();  // Finish ProfileFragment (or Activity)
+        getActivity().finish();
     }
 }

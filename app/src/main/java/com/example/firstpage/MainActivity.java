@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize and set up "Get Started" button
         getstartbtn = findViewById(R.id.getstartbtn);
         getstartbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Signin.class);
+            Intent intent = new Intent(MainActivity.this, navbar.class);
             startActivity(intent);
         });
 

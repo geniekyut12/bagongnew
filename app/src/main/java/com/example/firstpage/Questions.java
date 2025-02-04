@@ -18,7 +18,7 @@ public class Questions extends AppCompatActivity {
 
     private ImageView ImageView;
     private TextView HelloText, MotivationalText, DescriptionText;
-    private Button CalculateButton;
+    private Button StartButton;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -36,7 +36,7 @@ public class Questions extends AppCompatActivity {
         ImageView = findViewById(R.id.imageView);
         HelloText = findViewById(R.id.hello);  // Update to use the correct TextView ID
         MotivationalText = findViewById(R.id.motivationalText);
-        CalculateButton = findViewById(R.id.calculate);
+        StartButton = findViewById(R.id.btnstart);
 
         // Initialize FirebaseAuth and Firestore
         mAuth = FirebaseAuth.getInstance();
@@ -54,11 +54,11 @@ public class Questions extends AppCompatActivity {
             return;
         }
 
-        // Get the current user's ID (assumes user is logged in)
-        String userId = mAuth.getCurrentUser().getUid();
+        // Get the current user's username (you should have stored this when they registered)
+        String username = mAuth.getCurrentUser().getDisplayName(); // Username is stored in FirebaseUser displayName
 
-        // Fetch the first name from Firestore
-        DocumentReference userDocRef = db.collection("users").document(userId);
+// Fetch the first name from Firestore using the username as document ID
+        DocumentReference userDocRef = db.collection("users").document(username); // Use username as the document ID
         userDocRef.get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -75,7 +75,7 @@ public class Questions extends AppCompatActivity {
                 });
 
         // Set up a listener for the calculate button
-        CalculateButton.setOnClickListener(v -> performCalculation());
+        StartButton.setOnClickListener(v -> performCalculation());
     }
 
     // After the user completes the questions, mark them as completed

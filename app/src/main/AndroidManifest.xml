@@ -15,6 +15,33 @@
         android:theme="@style/Theme.Firstpage"
         tools:targetApi="34">
         <activity
+            android:name=".LeaderBoards"
+            android:exported="false" />
+        <activity
+            android:name=".Video"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz"
+            android:exported="false" />
+        <activity
+            android:name=".Game"
+            android:exported="false" />
+        <activity
+            android:name=".Question9"
+            android:exported="false" />
+        <activity
+            android:name=".Question8"
+            android:exported="false" />
+        <activity
+            android:name=".Question7"
+            android:exported="false" />
+        <activity
+            android:name=".Question6"
+            android:exported="false" />
+        <activity
+            android:name=".Question5"
+            android:exported="false" />
+        <activity
             android:name=".Question4"
             android:exported="false" />
         <activity

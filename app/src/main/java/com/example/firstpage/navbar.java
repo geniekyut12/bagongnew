@@ -37,8 +37,10 @@ public class navbar extends AppCompatActivity {
                 selectedFragment = new homepage();
             } else if (itemId == R.id.nav_footprint) {
                 selectedFragment = new FootPrintFragment();
-            } else if (itemId == R.id.nav_challenges) {
-                selectedFragment = new ChallengeFragment();
+            } else if (itemId == R.id.nav_games) {
+                selectedFragment = new GameFragment();
+            } else if (itemId == R.id.nav_community) {
+                selectedFragment = new CommunityFragment();
             } else if (itemId == R.id.nav_profile) {
                 selectedFragment = new ProfileFragment();
             }
@@ -74,8 +76,10 @@ public class navbar extends AppCompatActivity {
                 previousFragment = new homepage();
             } else if (previousItemId == R.id.nav_footprint) {
                 previousFragment = new FootPrintFragment();
-            } else if (previousItemId == R.id.nav_challenges) {
-                previousFragment = new RewardsFragment();
+            } else if (previousItemId == R.id.nav_games) {
+                previousFragment = new GameFragment();
+            } else if (previousItemId == R.id.nav_community) {
+                previousFragment = new CommunityFragment();
             } else if (previousItemId == R.id.nav_profile) {
                 previousFragment = new ProfileFragment();
             }

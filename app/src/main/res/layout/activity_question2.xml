@@ -84,7 +84,7 @@
             app:layout_constraintTop_toBottomOf="@id/TransPic" />
 
         <RadioGroup
-            android:id="@+id/radioGroupQ1"
+            android:id="@+id/radioGroupQ2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

@@ -153,7 +153,7 @@
     <string name="cv_des">\n</string>
     <string name="abouts">" C-Verde is an innovative mobile application designed to help individuals monitor and reduce their carbon footprint in an accessible way. By tracking daily activities like transportation, electricity usage, food consumption, and waste generation, "</string>
     <string name="pics">\n</string>
-    <string name="fwastes"><![CDATA[To reduce food waste, start by planning your meals and creating a grocery list to avoid impulse buys. Store food properly in airtight containers, and label leftovers with dates. Practice portion control when serving meals and get creative with leftovers.]]></string>
+    <string name="fwastes"><![CDATA[To reduce food waste, start by planning your meals and creating a grocery list to avoid impulse buys. Store food properly in airtight containers, and label leftovers with dates. Practice portion control when serving meals and get creative with leftovers.]]></string>
     <string name="challengesM">Your Challenges</string>
     <string name="challengesD">Take daily actions to reduce your carbon footprint, earn rewards for each completed challenge, and build sustainable habits. Let’s create a greener future together!</string>
     <string name="inprogress">In Progress</string>
@@ -210,8 +210,8 @@
     <string name="DelAcc">Delete My Account</string>
     <string name="editprof">Edit Profile</string>
     <string name="accsett">Account Settings</string>
-    <string name="Usernames">Genie</string>
-    <string name="EmailSample">esteban.genievibs.12122002@gmail.com</string>
+    <string name="Usernames"> </string>
+    <string name="EmailSample"> </string>
     <string name="personal">Personal Information</string>
     <string name="namee">       Name</string>
     <string name="Age">Age</string>
@@ -224,6 +224,49 @@
     <string name="fuel1">Liters per 100km</string>
     <string name="fuel2">Miles per gallon</string>
     <string name="getstart">Get Started</string>
+    <string name="allergy">Allergy:</string>
+    <string name="games">Games</string>
+    <string name="community">Community</string>
+    <string name="question5">How many kilometers do you travel going home to QCU?</string>
+    <string name="omni">Omnivorous Diet</string>
+    <string name="med"><![CDATA[Medical & Therapeutic Diets]]></string>
+    <string name="question7">What type of diet do you eat daily?</string>
+    <string name="eatingpatt">Intermittent Eating Patterns</string>
+    <string name="religdiet"><![CDATA[Cultural & Religious Diets]]></string>
+    <string name="vegitarian">Vegitarian Diet</string>
+    <string name="vegan">Vegan</string>
+    <string name="vegi">Vegetarian</string>
+    <string name="meat">Meat Eater</string>
+    <string name="question8">Do  you eat organic or inorganic foods?</string>
+    <string name="organic">Organic</string>
+    <string name="nonorg">Non-Organic</string>
+    <string name="question9">" How often do you leave food uneaten or discard leftovers?"</string>
+    <string name="select_gender">Gender:</string>
+    <string name="select_allergy">Allergy:</string>
+    <string name="height">Height (m.):</string>
+    <string name="weight">Weight (kg.):</string>
+    <string name="male">Male</string>
+    <string name="Female">Female</string>
+    <string name="Other">Others</string>
+    <string name="gender">Gender:</string>
+    <string name="streak">Streak Icon</string>
+    <string name="totalstreak">0-day streak</string>
+    <string name="checkingAtten">Checking attendance...</string>
+    <string name="checkedAtten">Attendance Checked</string>
+    <string name="Categories">Categories</string>
+    <string name="quiz">Quiz</string>
+    <string name="video">Videos</string>
+    <string name="leadersh">Leadership</string>
+    <string name="datetoday">February 2025</string>
+    <string name="daytoday">Tuesday</string>
 
+    <string-array name="dropdown_options">
+        <item>Chicken</item>
+        <item>Dairy</item>
+        <item>Seafood</item>
+        <item>Nuts</item>
+        <item>Eggs</item>
+        <item>None</item>
+    </string-array>
 
 </resources>

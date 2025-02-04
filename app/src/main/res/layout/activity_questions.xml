@@ -47,20 +47,14 @@
         android:textColor="@color/Green"
         android:textSize="18sp" />
 
-    <!-- Calculate Button -->
     <Button
-        android:id="@+id/calculate"
-        android:layout_width="231dp"
-        android:layout_height="59dp"
+        android:id="@+id/btnstart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="144dp"
-        android:background="@drawable/calculate"
-        android:fontFamily="@font/afacad"
-        android:text="@string/getstart"
-        android:textAllCaps="false"
-        android:textColor="@color/Brown"
-        android:textSize="21sp"
-        android:textStyle="bold" />
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="194dp"
+        android:text="@string/getstart" />
+
 </RelativeLayout>

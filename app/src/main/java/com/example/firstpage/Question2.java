@@ -17,7 +17,7 @@ public class Question2 extends AppCompatActivity {
         setContentView(R.layout.activity_question2);
 
         // Find the RadioGroup
-        RadioGroup radioGroup = findViewById(R.id.radioGroupQ1);
+        RadioGroup radioGroup = findViewById(R.id.radioGroupQ2);
 
         // Set listener for RadioGroup selection
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {

@@ -54,33 +54,35 @@ public class FootPrintFragment extends Fragment {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             // Reference to the user's data in the "users" collection to get firstName and lastName
-            db.collection("users").document(userId).get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null && document.exists()) {
-                        String firstName = document.getString("firstName");
-                        String lastName = document.getString("lastName");
+            db.collection("users").document(username)  // Use 'username' as the document ID
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                String firstName = document.getString("firstName");
+                                String lastName = document.getString("lastName");
 
-                        // Log the first name and last name to verify they are being retrieved correctly
-                        Log.d(TAG, "First Name: " + firstName);
-                        Log.d(TAG, "Last Name: " + lastName);
+                                // Log the first name and last name to verify they are being retrieved correctly
+                                Log.d(TAG, "First Name: " + firstName);
+                                Log.d(TAG, "Last Name: " + lastName);
 
-                        // Set the name in the header
-                        if (firstName != null && lastName != null) {
-                            headerText.setText("Hello, " + firstName + " " + lastName);
+                                // Set the name in the header
+                                if (firstName != null && lastName != null) {
+                                    headerText.setText("Hello, " + firstName + " " + lastName);
+                                } else {
+                                    headerText.setText("Hello, User");
+                                    Log.e(TAG, "First name or last name is missing for user: " + username);
+                                }
+                            } else {
+                                Log.e(TAG, "No such document exists for the user: " + username);
+                                headerText.setText("Hello, User");
+                            }
                         } else {
+                            Log.e(TAG, "Error getting document: " + task.getException());
                             headerText.setText("Hello, User");
-                            Log.e(TAG, "First name or last name is missing for user: " + userId);
                         }
-                    } else {
-                        Log.e(TAG, "No such document exists for the user: " + userId);
-                        headerText.setText("Hello, User");
-                    }
-                } else {
-                    Log.e(TAG, "Error getting document: " + task.getException());
-                    headerText.setText("Hello, User");
-                }
-            });
+                    });
 
             // Fetch carbon footprint data for the logged-in user based on username
             db.collection("carbon_footprints")
@@ -120,6 +122,7 @@ public class FootPrintFragment extends Fragment {
             co1.setText("No transportation data available.");
             Log.e(TAG, "User is not logged in");
         }
+
 
         // Set click listeners for navigation buttons
         arrowButton1.setOnClickListener(v -> startActivity(new Intent(getActivity(), Transportation.class)));

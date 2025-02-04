@@ -229,7 +229,7 @@ public class Register extends AppCompatActivity {
             txtpass.requestFocus();
             return;
         }
-        if (password.length() < 8) {
+        if (password.length() < 8 ) {
             txtpass.setError("Password must be at least 8 characters.");
             txtpass.requestFocus();
             return;
@@ -295,7 +295,7 @@ public class Register extends AppCompatActivity {
             txtEmail.requestFocus();
             return false;
         }
-        if (TextUtils.isEmpty(password) || password.length() < 8) {
+        if (TextUtils.isEmpty(password) || password.length() < 8 ) {
             txtpass.setError("Password must be at least 8 characters.");
             txtpass.requestFocus();
             return false;
@@ -323,19 +323,17 @@ public class Register extends AppCompatActivity {
     }
 
     private void saveUserToFirestore(FirebaseUser user, String username, String firstName, String lastName, String email, String studentID) {
-        String userId = user.getUid();
         Map<String, Object> userData = new HashMap<>();
         userData.put("username", username);
         userData.put("email", email);
         userData.put("firstName", firstName);
         userData.put("lastName", lastName);
-        userData.put("studentID", studentID); // Save student ID
+        userData.put("studentID", studentID);
         userData.put("registeredAt", FieldValue.serverTimestamp());
 
-        db.collection("users").document(userId)
+        db.collection("users").document(username) // Use username as document ID
                 .set(userData)
-                .addOnSuccessListener(aVoid -> Log.d(TAG, "User profile saved to Firestore"))
+                .addOnSuccessListener(aVoid -> Log.d(TAG, "User profile saved to Firestore with username as ID"))
                 .addOnFailureListener(e -> Log.w(TAG, "Error saving user profile", e));
     }
 }
-

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quesbg"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".YourActivityName">
+
+        <!-- Header with ImageView and TextView -->
+        <LinearLayout
+            android:id="@+id/foodLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/q1"
+                android:src="@drawable/transportation"
+                app:tint="@color/Green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/afacad"
+                android:text="@string/transpo"
+                android:textColor="@color/Green"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- SeekBar (Slider) -->
+        <TextView
+            android:id="@+id/questionText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppinsregular"
+            android:gravity="center"
+            android:text="@string/question4"
+            android:textColor="@color/Green"
+            android:textSize="19sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/foodLayout" />
+
+        <ImageView
+            android:id="@+id/TransPic"
+            android:layout_width="330dp"
+            android:layout_height="330dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/q1pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/questionText2" />
+
+        <TextView
+            android:id="@+id/guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/afacad"
+            android:gravity="center"
+            android:text="@string/guideRB"
+            android:textColor="#6d835b"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TransPic" />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroupQ6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide"
+            tools:layout_editor_absoluteY="416dp">
+
+            <RadioButton
+                android:id="@+id/btnNvr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/Never"
+                android:textColor="#000000"
+                tools:ignore="RtlSymmetry"/>
+
+            <RadioButton
+                android:id="@+id/btnRare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/Rarely"
+                android:textColor="#000000"
+                tools:ignore="RtlSymmetry"/>
+
+            <RadioButton
+                android:id="@+id/btnSmts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/SomeT"
+                android:textColor="#000000"
+                tools:ignore="RtlSymmetry"/>
+
+            <RadioButton
+                android:id="@+id/btnOftn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/Often"
+                android:textColor="#000000"
+                tools:ignore="RtlSymmetry" />
+
+            <RadioButton
+                android:id="@+id/btnAlwys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/Always"
+                android:textColor="#000000"
+                tools:ignore="RtlSymmetry"/>
+
+
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

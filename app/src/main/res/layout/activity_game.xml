@@ -1,0 +1,70 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gameCardView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <!-- QUIZ 1 -->
+    <LinearLayout
+        android:id="@+id/quiz1"
+        android:layout_width="310dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="68dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/mquizbg"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/save" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp">
+
+        <TextView
+            android:id="@+id/gameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/g1title"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/figtreebold"
+            android:textColor="@color/grayG"/>
+
+        <TextView
+            android:id="@+id/gameDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/g1desc"
+            android:textSize="11sp"
+            android:fontFamily="@font/figtree"
+            android:textColor="@color/grayG" />
+
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="127dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btnquiz"
+            android:text="@string/startg"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

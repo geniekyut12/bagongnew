@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbg"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/what"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Horizontal ScrollView for the first set of boxes -->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- First Box -->
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/wayoftravel"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="80dp"
+                            android:text="@string/bike"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/RBBG"
+                            android:fontFamily="@font/publicsans_bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/bikes"
+                            android:textAlignment="center"
+                            android:textColor="@color/LTGreen"
+                            android:fontFamily="@font/publicsans_semibold"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Third Box (Example continuation) -->
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/youeat"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="80dp"
+                            android:text="@string/eat"
+                            android:textAlignment="center"
+                            android:textSize="16sp"
+                            android:textColor="@color/RBBG"
+                            android:fontFamily="@font/publicsans_bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/eats"
+                            android:textAlignment="center"
+                            android:textColor="@color/LTGreen"
+                            android:fontFamily="@font/publicsans_semibold"
+                            android:textSize="12sp"/>
+
+
+                    </LinearLayout>
+                    <!-- Fourth Box (Example continuation) -->
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/redfoodwaste"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="70dp"
+                            android:text="@string/wastes"
+                            android:textAlignment="center"
+                            android:textSize="16sp"
+                            android:textColor="@color/RBBG"
+                            android:fontFamily="@font/publicsans_bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/fwastes"
+                            android:textAlignment="center"
+                            android:textColor="@color/LTGreen"
+                            android:fontFamily="@font/publicsans_semibold"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <!-- Add more boxes as needed -->
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Supporting Text -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/supportss"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enterprise"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_semibold_italic"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="start"
+                android:text="@string/homepagedesc"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppinsregular"/>
+
+            <!-- Enterprises Section -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- First Rectangle -->
+                    <LinearLayout
+                        android:id="@+id/masugidEntR"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="16dp"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:background="@drawable/masugid_home"
+                        android:onClick="onRectangleClick">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/MasugidIcon"
+                            android:src="@drawable/masugid_circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/MasugidEnt"
+                            android:fontFamily="@font/publicsans_bold"
+                            android:textColor="#F9FFF1"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/waniEntR"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/wani_home"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:onClick="onRectangleClick">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/WaniEnt"
+                            android:src="@drawable/wani_circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/Wani"
+                            android:fontFamily="@font/publicsans_bold"
+                            android:textColor="#F9FFF1"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/playmakerEntR"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/playmaker_home"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:onClick="onRectangleClick">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="@string/playmakerEnt"
+                            android:src="@drawable/playm_circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/playmtitle"
+                            android:fontFamily="@font/publicsans_bold"
+                            android:textColor="#F9FFF1"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Add more rectangles as needed -->
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <!-- Additional Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/cverde"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppinsregular"/>
+
+            <!-- Learn More Button -->
+            <Button
+                android:id="@+id/learn_more_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@android:color/transparent"
+                android:padding="0dp"
+                android:text="@string/learn"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold"
+                android:onClick="navigateToNextPage" />
+
+            <Button
+                android:id="@+id/chllngBtn"
+                android:layout_width="347dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="80dp"
+                android:background="@drawable/challengebtn1"
+                android:onClick="navigateToNextPage"
+                android:padding="0dp"
+                android:text="@string/challenge_home"
+                android:textColor="@color/LTGreen"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_semibold_italic"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,8 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F9FFF1" />
+    <corners android:radius="16dp" />
+    <stroke
+        android:color="@color/quizgreen"
+        android:width="2dp" />              <!-- Border width -->
+    <elevation android:elevation="4dp" />
+</shape>

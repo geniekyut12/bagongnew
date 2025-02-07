@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gamebg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Points Section -->
+        <LinearLayout
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btngame"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/about" />
+
+            <TextView
+                android:id="@+id/TotalP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:text="@string/totalP"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <!-- Calendar Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:radius="16dp"
+            android:backgroundTint="@color/green"
+            android:elevation="4dp"
+            android:padding="16dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"/>
+
+        <!-- Calendar Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:radius="16dp"
+            android:backgroundTint="@color/green"
+            android:elevation="4dp"
+            android:padding="16dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/attenbg">
+
+                <!-- Date Display -->
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daytoday"
+                    android:textSize="28sp"
+                    android:textColor="@color/grayG"
+                    android:fontFamily="@font/figtreebold"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvMonthYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/datetoday"
+                    android:fontFamily="@font/figtree"
+                    android:textSize="14sp"
+                    android:textColor="@color/grayG" />
+
+                <!-- Streak Status -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <!-- Fire Icon -->
+                    <ImageView
+                        android:id="@+id/ivFireIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/streak"
+                        android:contentDescription="@string/streak" />
+
+                    <!-- Streak Count -->
+                    <TextView
+                        android:id="@+id/tvStreakCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/totalstreak"
+                        android:fontFamily="@font/figtreemed"
+                        android:textSize="16sp"
+                        android:textColor="@color/grayG"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
+                <!-- Divider Line -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="@color/grayG"
+                    android:layout_marginTop="8dp" />
+
+                <!-- Attendance Status -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+
+                    <!-- Checkmark Icon -->
+                    <ImageView
+                        android:id="@+id/ivCheckmark"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/check"
+                        android:contentDescription="@string/checkedAtten"
+                        app:tint="@color/LGreen"
+                        android:visibility="gone" /> <!-- Initially hidden -->
+
+                    <!-- Status Text -->
+
+                    <!-- Attendance Button -->
+                    <TextView
+                        android:id="@+id/tvAttendanceStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/checkingAtten"
+                        android:textColor="@color/grayG"
+                        android:fontFamily="@font/figtree"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnMarkAttendance"
+                        android:layout_width="116dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/btnatten"
+                        android:onClick="markAttendance"
+                        android:text="@string/attendance"
+                        android:textColor="@color/grayG"
+                        android:fontFamily="@font/figtreemed"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Categories -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Categories"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/grayG"
+            android:layout_marginTop="16dp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_marginTop="8dp"
+            android:padding="8dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:radius="16dp">
+
+                <LinearLayout
+                    android:id="@+id/gameB"
+                    android:layout_width="142dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/btngame"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/MasugidIcon"
+                        android:src="@drawable/gameb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/publicsans_bold"
+                        android:text="@string/games"
+                        android:textColor="@color/grayG"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Quiz Rectangle (Right) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:radius="16dp">
+
+                <LinearLayout
+                    android:id="@+id/quizB"
+                    android:layout_width="142dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/btngame"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:contentDescription="@string/MasugidIcon"
+                        android:src="@drawable/quiz" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/publicsans_bold"
+                        android:text="@string/quiz"
+                        android:textColor="@color/grayG"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- New Feature 1 (Bottom Left) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:radius="16dp">
+
+                <LinearLayout
+                    android:id="@+id/feature1B"
+                    android:layout_width="142dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/btngame"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/vid" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/video"
+                        android:textColor="@color/grayG"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- New Feature 2 (Bottom Right) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_columnWeight="1"
+                android:radius="16dp">
+
+            <LinearLayout
+                android:id="@+id/feature2B"
+                android:layout_width="142dp"
+                android:layout_height="100dp"
+                android:background="@drawable/btngame"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/leaderb" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/leadersh"
+                android:textColor="@color/grayG"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>

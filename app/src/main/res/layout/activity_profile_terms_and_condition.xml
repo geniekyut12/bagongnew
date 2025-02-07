@@ -22,8 +22,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             app:tint="@color/Green"
-            android:src="@drawable/left_arrow"
-            android:contentDescription="Back button"
+            android:src="@drawable/back"
             android:padding="4dp" />
 
         <TextView

@@ -14,17 +14,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Firstpage"
         tools:targetApi="34">
+        <activity android:name=".Sphere" />
+        <activity android:name=".Ice" />
+        <activity android:name=".Weather" />
+        <activity android:name=".Exp" />
+        <activity android:name=".Jar" />
+        <activity android:name=".Barrier" />
+        <activity android:name=".Environment" />
+
+        <activity android:name=".GameOver" />
+        <activity android:name=".GameActivity" />
+        <activity
+            android:name=".Game1Tut"
+            android:exported="false" />
+        <activity android:name=".Game" />
+        <activity
+            android:name=".Quiz1After"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz5of1"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz4of1"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz3of1"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz2of1"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz1of1"
+            android:exported="false" />
         <activity
             android:name=".LeaderBoards"
             android:exported="false" />
         <activity
             android:name=".Video"
-            android:exported="false" />
-        <activity
-            android:name=".Quiz"
-            android:exported="false" />
-        <activity
-            android:name=".Game"
             android:exported="false" />
         <activity
             android:name=".Question9"
@@ -54,12 +80,6 @@
             android:name=".Question1"
             android:exported="false" />
         <activity
-            android:name=".Chall1"
-            android:exported="false" />
-        <activity
-            android:name=".Challenges"
-            android:exported="false" />
-        <activity
             android:name=".RewardTwo"
             android:exported="false" />
         <activity
@@ -72,9 +92,6 @@
             android:name=".PlayMaker_Ent"
             android:exported="false" />
         <activity
-            android:name=".wani_circle"
-            android:exported="false" />
-        <activity
             android:name=".Masugid_Ent"
             android:exported="false" />
         <activity
@@ -82,12 +99,6 @@
             android:exported="false" />
         <activity
             android:name=".homepage"
-            android:exported="false" />
-        <activity
-            android:name=".homepage"
-            android:exported="false" />
-        <activity
-            android:name=".Chall"
             android:exported="false" />
         <activity
             android:name=".AfterQuestion"

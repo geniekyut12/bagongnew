@@ -125,7 +125,6 @@ public class FootPrintFragment extends Fragment {
 
 
         // Set click listeners for navigation buttons
-        arrowButton1.setOnClickListener(v -> startActivity(new Intent(getActivity(), Transportation.class)));
         arrowButton2.setOnClickListener(v -> startActivity(new Intent(getActivity(), Food.class)));
         arrowButton3.setOnClickListener(v -> startActivity(new Intent(getActivity(), Foodwaste.class)));
 

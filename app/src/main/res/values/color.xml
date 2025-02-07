@@ -16,6 +16,9 @@
         <color name="BrightGreen"> #1A8433</color>
         <color name="green">#4CAF50</color>
         <color name="quesbg"> #E3EED4</color>
-        <color name="grayG"> #898E89</color>
+        <color name="grayG"> #1F221E</color>
         <color name="gamebg"> #F9FFF1</color>
+        <color name="quizgreen">#97C97A</color>
+        <color name="mintgreen">#E5F4D9</color>
+        <color name="homepagebg">#F9FFF1</color>
 </resources>

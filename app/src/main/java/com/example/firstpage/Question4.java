@@ -24,7 +24,7 @@ public class Question4 extends AppCompatActivity {
         // Set listener for RadioGroup selection
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId != -1) { // Ensure a valid selection
-                Intent intent = new Intent(Question4.this,AfterQuestion.class);
+                Intent intent = new Intent(Question4.this,Question5.class);
                 startActivity(intent);
             }
         });

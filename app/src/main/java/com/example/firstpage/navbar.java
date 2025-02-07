@@ -20,7 +20,7 @@ public class navbar extends AppCompatActivity {
 
         // Load the default fragment (HomeFragment)
         if (savedInstanceState == null) {
-            loadFragment(new homepage(), R.id.nav_home);
+            loadFragment(new HomeFragment(), R.id.nav_home);
         }
 
         // Handle bottom navigation item selection
@@ -34,7 +34,7 @@ public class navbar extends AppCompatActivity {
 
             Fragment selectedFragment = null;
             if (itemId == R.id.nav_home) {
-                selectedFragment = new homepage();
+                selectedFragment = new HomeFragment();
             } else if (itemId == R.id.nav_footprint) {
                 selectedFragment = new FootPrintFragment();
             } else if (itemId == R.id.nav_games) {
@@ -73,7 +73,7 @@ public class navbar extends AppCompatActivity {
 
             Fragment previousFragment = null;
             if (previousItemId == R.id.nav_home) {
-                previousFragment = new homepage();
+                previousFragment = new HomeFragment();
             } else if (previousItemId == R.id.nav_footprint) {
                 previousFragment = new FootPrintFragment();
             } else if (previousItemId == R.id.nav_games) {

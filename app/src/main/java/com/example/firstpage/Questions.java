@@ -48,7 +48,7 @@ public class Questions extends AppCompatActivity {
 
         // If questions are already completed, redirect to homepage
         if (isQuestionsCompleted) {
-            Intent intent = new Intent(Questions.this, homepage.class);
+            Intent intent = new Intent(Questions.this, HomeFragment.class);
             startActivity(intent);
             finish();
             return;

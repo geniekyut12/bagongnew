@@ -39,10 +39,25 @@ public class QuizFrag extends Fragment {
         // Initialize the button
         btnstartqz1 = view.findViewById(R.id.btnstartqz1);
 
+        // Check if the quiz is done (passed from the previous activity/fragment)
+        if (getArguments() != null && getArguments().getBoolean("isQuizDone", false)) {
+            // Set low opacity to the button when the quiz is done
+            setButtonLowOpacity();
+            // Optionally, disable the button interaction
+            btnstartqz1.setEnabled(false);
+        }
+
         // Navigate to next activity on button click
         btnstartqz1.setOnClickListener(v -> navigateToNext());
 
         return view; // Return the view after initializing components
+    }
+
+    // Set low opacity (alpha value) to the button
+    private void setButtonLowOpacity() {
+        if (btnstartqz1 != null) {
+            btnstartqz1.setAlpha(0.3f); // 0.3f means 30% opacity (low opacity)
+        }
     }
 
     private void navigateToNext() {

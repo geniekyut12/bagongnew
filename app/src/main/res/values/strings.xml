@@ -380,6 +380,16 @@
     <string name="weatherbelow">Replicate the Earth’s major spheres by making a terrarium!</string>
 
 
+    <string name="privacy"><![CDATA[Privacy & Terms]]></string>
+    <string name="viewall">View all →</string>
+    <string name="edit"><![CDATA[Achievements & Badges]]></string>
+    <string name="editprofile">Edit Profile ✎</string>
+    <string name="logout">Logout</string>
+    <string name="select_date">\n</string>
+    <string name="backs">\n</string>
+    <string name="bday">\n</string>
+    <string name="hatdog">\n</string>
+    <string name="enteryourbday">Enter your birthday</string>
     <string-array name="dropdown_options">
         <item>Chicken</item>
         <item>Dairy</item>

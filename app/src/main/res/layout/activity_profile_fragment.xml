@@ -5,26 +5,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainbg">
+    android:background="#F5F5F5">
+
+    <!-- Top Section Background with Rounded Bottom Corners -->
+    <View
+        android:id="@+id/topBackground"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:background="@drawable/rounded_top_background"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Notification Icon -->
+    <ImageView
+        android:id="@+id/notificationIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/notification"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
 
     <!-- Profile Image -->
     <ImageView
         android:id="@+id/profileImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="52dp"
-        android:src="@drawable/ic_profile"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/user"
+        android:background="@drawable/circle_background"
+        app:layout_constraintTop_toTopOf="@id/topBackground"
+        app:layout_constraintBottom_toBottomOf="@id/topBackground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editButton" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Username -->
+    <!-- Name -->
     <TextView
-        android:id="@+id/UserName"
+        android:id="@+id/titleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/Usernames"
+        android:text="@string/names"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -32,197 +50,110 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Email -->
-    <TextView
-        android:id="@+id/titleEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/EmailSample"
-        android:textColor="#808080"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UserName" />
-
     <!-- Edit Profile Button -->
     <Button
-        android:id="@+id/editButton"
+        android:id="@+id/editProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="36dp"
-        android:background="@android:color/transparent"
-        android:text="@string/editprof"
-        android:textColor="#FFFFFF"
+        android:text="@string/editprofile"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:background="?android:attr/selectableItemBackground"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintTop_toBottomOf="@id/titleName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    <!-- Achievements & Badges Section -->
+    <TextView
+        android:id="@+id/achievementsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="228dp"
+        android:text="@string/edit"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/achievementsBox"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- View All -->
+
+    <View
+        android:id="@+id/achievementsBox"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="296dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Account Settings -->
     <TextView
-        android:id="@+id/accountSettings"
-        android:layout_width="match_parent"
+        android:id="@+id/viewAll"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:padding="16dp"
-        android:text="@string/accsett"
-        android:textColor="#000000"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/afacad"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleEmail"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_margin="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/viewall"
+        android:textColor="#808080"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/achievementsBox"
+        app:layout_constraintEnd_toEndOf="@id/achievementsBox" />
 
-    <!-- Divider Below Account Settings -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#C0C0C0"
-        app:layout_constraintTop_toBottomOf="@id/accountSettings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Delete Account Section -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/deleteAccountContainer"
-        android:layout_width="match_parent"
+    <!-- Privacy & Terms -->
+    <LinearLayout
+        android:id="@+id/privacyLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@id/accountSettings"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/achievementsBox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_margin="16dp">
 
         <ImageView
-            android:id="@+id/deleteAccountIcon"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/delete"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <Button
-            android:id="@+id/btndelacc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/afacad"
-            android:text="@string/DelAcc"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
-            app:layout_constraintStart_toEndOf="@id/deleteAccountIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Privacy & Terms Header -->
-    <TextView
-        android:id="@+id/privacyHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/termsandcondition"
-        android:textColor="#000000"
-        android:textSize="19sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/afacad"
-        app:layout_constraintTop_toBottomOf="@id/deleteAccountContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Divider Below Privacy & Terms -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#C0C0C0"
-        app:layout_constraintTop_toBottomOf="@id/privacyHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Terms and Conditions -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/termsConditionsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@id/privacyHeader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/termsConditionsIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:src="@drawable/termsand_condition"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/termsand_condition" />
 
-        <Button
-            android:id="@+id/btnTAC"
+        <TextView
+            android:id="@+id/privacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/afacad"
-            android:text="@string/TAC"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.134"
-            app:layout_constraintStart_toEndOf="@id/termsConditionsIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:text="@string/privacy"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Logout Section -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/logoutContainer"
-        android:layout_width="match_parent"
+    <!-- Logout -->
+    <LinearLayout
+        android:id="@+id/logoutLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="?android:attr/selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@id/termsConditionsContainer"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/privacyLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Logout Icon -->
-
-        <!-- Logout Button -->
+        android:layout_margin="16dp">
 
         <ImageView
-            android:id="@+id/logoutIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="28dp"
-            android:src="@drawable/logout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnLogout"
+            android:src="@drawable/logout" />
+        <TextView
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:fontFamily="@font/afacad"
-            android:text="Logout"
+            android:text="@string/logout"
             android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/logoutIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:textSize="16sp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

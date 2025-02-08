@@ -1,5 +1,7 @@
 package com.example.firstpage;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProfileFragment extends Fragment {
 
-    private ImageView profileImg;
-    private TextView titleName, titleEmail;
-    private Button editButton, deleteAccountButton, termsConditionsButton, logoutButton;
+    private TextView titleName, logoutButton;
+    private Button editButton;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -59,26 +59,20 @@ public class ProfileFragment extends Fragment {
     }
 
     private void initializeViews(View view) {
-        profileImg = view.findViewById(R.id.profileImg);
-        titleName = view.findViewById(R.id.UserName);
-        titleEmail = view.findViewById(R.id.titleEmail);
-        editButton = view.findViewById(R.id.editButton);
-        deleteAccountButton = view.findViewById(R.id.btndelacc);
-        termsConditionsButton = view.findViewById(R.id.btnTAC);
-        logoutButton = view.findViewById(R.id.btnLogout);
+        titleName = view.findViewById(R.id.titleName);
+        editButton = view.findViewById(R.id.editProfile);
+        logoutButton = view.findViewById(R.id.logout);
     }
 
     private void setupListeners() {
-        editButton.setOnClickListener(v -> navigateToActivity(EditProfile.class));
-        termsConditionsButton.setOnClickListener(v -> navigateToActivity(ProfileTermsAndCondition.class));
-        deleteAccountButton.setOnClickListener(v -> showDeleteConfirmationDialog());
         logoutButton.setOnClickListener(v -> handleLogout());
+        editButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), EditProfile.class);
+            startActivity(intent);
+        });
     }
 
     private void fetchUserData() {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         if (mAuth.getCurrentUser() != null) {
             String username = mAuth.getCurrentUser().getDisplayName(); // Use display name as username
 
@@ -86,11 +80,9 @@ public class ProfileFragment extends Fragment {
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     String firstName = task.getResult().getString("firstName");
-                    String email = task.getResult().getString("email");
 
-                    if (firstName != null && email != null) {
+                    if (firstName != null) {
                         titleName.setText(firstName);
-                        titleEmail.setText(email);
                     } else {
                         Log.d("ProfileFragment", "User data is null or empty.");
                         Toast.makeText(getContext(), "User data not found.", Toast.LENGTH_SHORT).show();
@@ -106,49 +98,27 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-
-
-    private void navigateToActivity(Class<?> targetActivity) {
-        Intent intent = new Intent(getActivity(), targetActivity);
-        startActivity(intent);
-    }
-
-    private void showDeleteConfirmationDialog() {
-        new android.app.AlertDialog.Builder(requireContext())
-                .setTitle("Delete Account")
-                .setMessage("Are you sure you want to delete your account? You have 30 days to restore it before it's permanently deleted.")
-                .setPositiveButton("Delete", (dialog, which) -> performAccountDeletion())
-                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                .show();
-    }
-
-    private void performAccountDeletion() {
-        if (mAuth.getCurrentUser() == null) {
-            Toast.makeText(requireContext(), "No user logged in.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String userId = mAuth.getCurrentUser().getUid();
-        // Add deletion logic here, possibly using Firebase functions to delete user data from Firestore and FirebaseAuth
-        mAuth.getCurrentUser().delete().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Toast.makeText(requireContext(), "Account deleted successfully.", Toast.LENGTH_SHORT).show();
-                handleLogout(); // Logout after account deletion
-            } else {
-                Toast.makeText(requireContext(), "Failed to delete account.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     private void handleLogout() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isLoggedIn", false);
-        editor.apply();
+        if (mAuth.getCurrentUser() != null) {
+            mAuth.signOut();
 
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        getActivity().finish();
+            // Clear login preferences
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isLoggedIn", false);
+            editor.apply();
+
+            Toast.makeText(getContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "User logged out successfully");
+
+            // Redirect to login screen
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        } else {
+            Toast.makeText(getContext(), "No user logged in", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Attempted to log out but no user was logged in");
+        }
     }
 }

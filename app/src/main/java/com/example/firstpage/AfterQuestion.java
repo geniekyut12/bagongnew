@@ -39,7 +39,10 @@ public class AfterQuestion extends AppCompatActivity {
             startActivity(backIntent);
             finish();
         });
+
     }
+
+
 
     @Override
     public void onBackPressed() {

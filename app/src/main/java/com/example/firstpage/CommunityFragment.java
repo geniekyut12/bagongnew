@@ -1,64 +1,53 @@
 package com.example.firstpage;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CommunityFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CommunityFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ImageView profileImage;
+    private EditText searchEditText;
+    private LinearLayout masEnt, waniEnt, playEnt;
 
     public CommunityFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CommunityFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CommunityFragment newInstance(String param1, String param2) {
-        CommunityFragment fragment = new CommunityFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        super(R.layout.fragment_community); // Ensure this matches your XML layout filename
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Initialize UI elements
+        profileImage = view.findViewById(R.id.profileImage);
+        searchEditText = view.findViewById(R.id.searchEditText);
+        masEnt = view.findViewById(R.id.MasEnt);
+        waniEnt = view.findViewById(R.id.WaniEnt);
+        playEnt = view.findViewById(R.id.PlayEnt);
+
+        // Click listener for profile image
+        profileImage.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Profile clicked!", Toast.LENGTH_SHORT).show();
+            // Add navigation logic if needed (e.g., go to Profile Activity)
+        });
+
+        // Click listeners for enterprise items
+        masEnt.setOnClickListener(v -> startNewActivity(Masugid_Ent.class));
+        waniEnt.setOnClickListener(v -> startNewActivity(Wani_Ent.class));
+        playEnt.setOnClickListener(v -> startNewActivity(PlayMaker_Ent.class));
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community, container, false);
+    // Generic method to navigate to a new activity
+    private void startNewActivity(Class<?> destinationClass) {
+        Intent intent = new Intent(getActivity(), destinationClass);
+        startActivity(intent);
     }
 }

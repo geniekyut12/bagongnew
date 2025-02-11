@@ -243,7 +243,7 @@
     <string name="question9">" How often do you leave food uneaten or discard leftovers?"</string>
     <string name="select_gender">Gender:</string>
     <string name="select_allergy">Allergy:</string>
-    <string name="height">Height (m.):</string>
+    <string name="height">Height (cm.):</string>
     <string name="weight">Weight (kg.):</string>
     <string name="male">Male</string>
     <string name="Female">Female</string>
@@ -390,6 +390,11 @@
     <string name="bday">\n</string>
     <string name="hatdog">\n</string>
     <string name="enteryourbday">Enter your birthday</string>
+    <string name="BMI">Your Body Mass Index (BMI):</string>
+    <string name="bmitotal">0.0</string>
+    <string name="BMIStatus">Your BMI:</string>
+    <string name="calculateBMI">Calculate BMI</string>
+    <string name="entrep">Our Entrprise Partners</string>
     <string-array name="dropdown_options">
         <item>Chicken</item>
         <item>Dairy</item>

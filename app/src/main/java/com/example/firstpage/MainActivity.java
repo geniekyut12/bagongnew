@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         // If logged in, start navbar (or any other screen) and finish MainActivity
         if (isLoggedIn) {
-            Intent intent = new Intent(MainActivity.this, navbar.class);
+            Intent intent = new Intent(MainActivity.this,navbar.class);
             startActivity(intent);
             finish();
             return;  // Stop here if the user is logged in

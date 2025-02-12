@@ -40,7 +40,6 @@ public class FootPrintFragment extends Fragment {
         LinearLayout linearLayout3 = view.findViewById(R.id.linearLayout3);
         ImageView arrowButton1 = view.findViewById(R.id.arrowButton1);
         ImageView arrowButton2 = view.findViewById(R.id.arrowButton2);
-        ImageView arrowButton3 = view.findViewById(R.id.arrowButton3);
         TextView co1 = view.findViewById(R.id.co1); // TextView for transportation data
 
         // Retrieve the currently logged-in user
@@ -126,8 +125,6 @@ public class FootPrintFragment extends Fragment {
 
         // Set click listeners for navigation buttons
         arrowButton2.setOnClickListener(v -> startActivity(new Intent(getActivity(), Food.class)));
-        arrowButton3.setOnClickListener(v -> startActivity(new Intent(getActivity(), Foodwaste.class)));
-
         return view;
     }
 }

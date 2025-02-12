@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
+
     namespace = "com.example.firstpage"
     compileSdk = 35
 
@@ -16,6 +18,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
+
 
     buildTypes {
         release {
@@ -30,26 +34,37 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-}
 
+
+    dependencies {
+        implementation(libs.appcompat)
+        implementation(libs.material) // Ensure `libs.material` points to version 1.9.0 or your preferred version.
+        implementation(libs.activity)
+        implementation(libs.constraintlayout)
+        implementation(libs.firebase.auth)
+        implementation(libs.firebase.firestore)
+        implementation(libs.recyclerview)
+        implementation(libs.core.ktx)
+        implementation(libs.material3.android)
+        testImplementation(libs.junit)
+        androidTestImplementation(libs.ext.junit)
+        androidTestImplementation(libs.espresso.core)
+        implementation(libs.cardview)
+        implementation("com.google.android.material:material:1.9.0")
+
+        // Firebase and Play Services dependencies
+        implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+        implementation("com.google.firebase:firebase-database")
+        implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+    }
+}
 dependencies {
+    implementation(libs.vision.common)
+    implementation(libs.image.labeling.common)
+    implementation(libs.image.labeling.default.common)
     implementation(libs.appcompat)
-    implementation(libs.material) // Ensure `libs.material` points to version 1.9.0 or your preferred version.
+    implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
-    implementation(libs.recyclerview)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    implementation(libs.cardview)
-    implementation ("com.google.android.material:material:1.9.0")
-
-    // Firebase and Play Services dependencies
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.android.gms:play-services-auth:21.2.0")
-
-
 }

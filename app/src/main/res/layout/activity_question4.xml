@@ -99,7 +99,7 @@
             tools:layout_editor_absoluteY="416dp">
 
             <RadioButton
-                android:id="@+id/btnBus"
+                android:id="@+id/btnperkm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -110,7 +110,7 @@
                 android:textColor="#000000" />
 
             <RadioButton
-                android:id="@+id/btnJeep"
+                android:id="@+id/btnpergallon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

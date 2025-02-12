@@ -40,7 +40,6 @@
     <string name="Efan">Electricfan(s)</string>
     <string name="Ac">Aircondition(s)</string>
     <string name="question1">Daily calculated distance from home to Quezon City University</string>
-    <string name="question2">Daily calculated distance from home to Quezon City University</string>
     <string name="question3">What type of fuel do you use?</string>
     <string name="WTG">WAY TO GO!</string>
     <string name="guideRB">Select your answer</string>
@@ -395,6 +394,10 @@
     <string name="BMIStatus">Your BMI:</string>
     <string name="calculateBMI">Calculate BMI</string>
     <string name="entrep">Our Entrprise Partners</string>
+    <string name="question2">What mode of transportation do you use when going home to QCU?</string>
+    <string name="capturebtn">Capture Image</string>
+    <string name="gallery">Select from Gallery</string>
+    <string name="result">Results will appear here</string>
     <string-array name="dropdown_options">
         <item>Chicken</item>
         <item>Dairy</item>

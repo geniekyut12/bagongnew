@@ -42,23 +42,11 @@
         android:textColor="#000"
         android:textSize="14sp" />
 
-    <!-- Circular ProgressBar -->
-    <FrameLayout
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp">
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/pieChartView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"/>
 
-        <ProgressBar
-            android:id="@+id/circularProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:indeterminateOnly="false"
-            android:progressDrawable="@drawable/circular_progress"
-            android:max="200"
-            android:progress="120"
-            style="?android:attr/progressBarStyleHorizontal" />
-    </FrameLayout>
 
     <!-- Breakdown Section -->
     <TextView
@@ -198,44 +186,7 @@
             android:clickable="true"
             android:focusable="true">
 
-            <View
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:backgroundTint="#A1D683"
-                android:background="@drawable/rounded_dot" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Food Waste"
-                android:textSize="14sp"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/co3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="CO3"
-                android:textSize="14sp"
-                android:textColor="#000"
-                android:gravity="end" />
-
-            <ImageView
-                android:id="@+id/arrowButton3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/right_arrow"
-                android:contentDescription="Arrow"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_centerInParent="true"
-                android:onClick="onArrowButtonClick"
-                app:tint="#000000" />
         </LinearLayout>
 
     </LinearLayout>

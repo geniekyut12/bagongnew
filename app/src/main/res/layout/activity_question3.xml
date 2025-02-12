@@ -87,7 +87,7 @@
 
 
         <RadioGroup
-            android:id="@+id/radioGroupQ1"
+            android:id="@+id/radioGroupQ3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -98,7 +98,38 @@
             app:layout_constraintTop_toBottomOf="@id/guide"
             tools:layout_editor_absoluteY="416dp">
 
+            <RadioButton
+                android:id="@+id/btnGas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/gas"
+                android:textColor="#000000" />
 
+            <RadioButton
+                android:id="@+id/btndiesel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/diesel"
+                android:textColor="#000000" />
+
+            <RadioButton
+                android:id="@+id/btnhybrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/q3choices"
+                android:fontFamily="@font/poppinsregular"
+                android:paddingStart="10dp"
+                android:text="@string/hybrid"
+                android:textColor="#000000" />
 
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>

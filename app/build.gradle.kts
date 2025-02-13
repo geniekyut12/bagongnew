@@ -67,4 +67,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.play.services.location)
+    implementation(libs.cardview)
+    implementation(libs.mlkit.image.labeling)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.database)
+    implementation(libs.play.services.auth)
+    implementation(libs.firebase.storage)
 }

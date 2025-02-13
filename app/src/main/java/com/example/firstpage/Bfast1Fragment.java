@@ -73,30 +73,54 @@ public class Bfast1Fragment extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK && data != null) {
-            if (requestCode == REQUEST_IMAGE_CAPTURE) {
-                Bundle extras = data.getExtras();
-                imageBitmap = (Bitmap) extras.get("data");
-            } else if (requestCode == REQUEST_IMAGE_PICK) {
-                Uri imageUri = data.getData();
-                try {
-                    InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                    imageBitmap = BitmapFactory.decodeStream(imageStream);
-                } catch (IOException e) {
-                    resultText.setText("Error: " + e.getMessage());
-                    return;
+            try {
+                if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                    Bundle extras = data.getExtras();
+                    if (extras != null) {
+                        imageBitmap = (Bitmap) extras.get("data");
+                    }
+                } else if (requestCode == REQUEST_IMAGE_PICK) {
+                    Uri imageUri = data.getData();
+                    if (imageUri != null) {
+                        InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                        if (imageStream != null) {
+                            imageBitmap = BitmapFactory.decodeStream(imageStream);
+                            imageStream.close(); // Close input stream to prevent memory leaks
+                        }
+                    } else {
+                        resultText.setText("Error: Selected image is null.");
+                        return;
+                    }
                 }
+
+                if (imageBitmap != null) {
+                    imageView.setImageBitmap(imageBitmap);
+                    processImage();
+                } else {
+                    resultText.setText("Error: Failed to load image.");
+                }
+
+            } catch (IOException e) {
+                resultText.setText("Error: " + e.getMessage());
             }
-            imageView.setImageBitmap(imageBitmap);
-            processImage();
+        } else {
+            resultText.setText("No image selected.");
         }
     }
 
+
     private void processImage() {
+        if (imageBitmap == null) {
+            resultText.setText("Error: No image available.");
+            return;
+        }
+
         InputImage image = InputImage.fromBitmap(imageBitmap, 0);
         com.google.mlkit.vision.label.ImageLabeler labeler =
                 ImageLabeling.getClient(new ImageLabelerOptions.Builder()
-                        .setConfidenceThreshold(0.9f) // Increase confidence threshold
+                        .setConfidenceThreshold(0.7f) // Lower confidence threshold
                         .build());
 
         labeler.process(image)
@@ -110,14 +134,21 @@ public class Bfast1Fragment extends AppCompatActivity {
 
         for (ImageLabel label : labels) {
             String labelText = label.getText().toLowerCase();
-            if (foodCO2Map.containsKey(labelText)) {
-                foodDetected = true;
-                double co2Emission = foodCO2Map.get(labelText);
-                results.append(label.getText()).append(" (Confidence: ").append(label.getConfidence()).append(")\n");
-                results.append("Estimated CO2 Emission: ").append(co2Emission).append(" kg CO2/kg\n");
+
+            for (String food : foodCO2Map.keySet()) {
+                if (labelText.contains(food)) { // Use contains() for better matching
+                    foodDetected = true;
+                    double co2Emission = foodCO2Map.get(food);
+                    results.append(label.getText()).append(" (Confidence: ")
+                            .append(label.getConfidence()).append(")\n")
+                            .append("Estimated CO2 Emission: ")
+                            .append(co2Emission).append(" kg CO2/kg\n");
+                    break; // Stop checking once matched
+                }
             }
         }
 
         resultText.setText(foodDetected ? results.toString() : "No food detected.");
     }
+
 }

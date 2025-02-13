@@ -170,7 +170,7 @@ public class Question1 extends AppCompatActivity {
             String status;
             int imageResId;
             if (bmi < 18.5) {
-                imageResId = R.drawable.underweight;
+                imageResId = R.drawable.underw;
                 status = "Underweight";
             } else if (bmi < 24.9) {
                 imageResId = R.drawable.normal_weight;

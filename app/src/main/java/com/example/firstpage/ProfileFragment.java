@@ -2,33 +2,52 @@ package com.example.firstpage;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView titleName, logoutButton;
-    private Button editButton;
+    private TextView titleName;
+    private LinearLayout logoutButton,editButton;
 
+    private ImageView profileImg;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private Uri imageUri;
+    private String username;
 
     public ProfileFragment() {
         // Default constructor
@@ -51,17 +70,18 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Check if the user is logged in and fetch user data
+        // Fetch user data
         fetchUserData();
 
-        // Set up listeners for buttons
+        // Set up listeners
         setupListeners();
     }
 
     private void initializeViews(View view) {
         titleName = view.findViewById(R.id.titleName);
         editButton = view.findViewById(R.id.editProfile);
-        logoutButton = view.findViewById(R.id.logout);
+        logoutButton = view.findViewById(R.id.btnlogout);
+        profileImg = view.findViewById(R.id.profileImg);
     }
 
     private void setupListeners() {
@@ -70,32 +90,100 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(getActivity(), EditProfile.class);
             startActivity(intent);
         });
+
+        // Profile image click listener for uploading
+        profileImg.setOnClickListener(v -> selectImageSource());
     }
 
     private void fetchUserData() {
         if (mAuth.getCurrentUser() != null) {
-            String username = mAuth.getCurrentUser().getDisplayName(); // Use display name as username
+            username = mAuth.getCurrentUser().getDisplayName(); // Use display name as username
 
-            DocumentReference userDocRef = db.collection("users").document(username); // Query using username
+            DocumentReference userDocRef = db.collection("users").document(username);
             userDocRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
+                if (task.isSuccessful() && task.getResult().exists()) {
                     String firstName = task.getResult().getString("firstName");
 
                     if (firstName != null) {
                         titleName.setText(firstName);
-                    } else {
-                        Log.d("ProfileFragment", "User data is null or empty.");
-                        Toast.makeText(getContext(), "User data not found.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Log.d("ProfileFragment", "Failed to retrieve user data: " + task.getException());
-                    Toast.makeText(getContext(), "Failed to fetch user data.", Toast.LENGTH_SHORT).show();
+                    Log.d("ProfileFragment", "User data not found.");
+                    Toast.makeText(getContext(), "User data not found.", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
             Log.d("ProfileFragment", "No user logged in.");
             Toast.makeText(getContext(), "No user logged in.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void selectImageSource() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Choose an option")
+                .setItems(new CharSequence[]{"Camera", "Gallery"}, (dialog, which) -> {
+                    if (which == 0) {
+                        openCamera();
+                    } else {
+                        openGallery();
+                    }
+                })
+                .show();
+    }
+
+    private void openCamera() {
+        File photoFile = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "profile.jpg");
+        imageUri = FileProvider.getUriForFile(getContext(), getActivity().getPackageName() + ".provider", photoFile);
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        cameraLauncher.launch(intent);
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galleryLauncher.launch(intent);
+    }
+
+    private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == getActivity().RESULT_OK && result.getData() != null) {
+                    imageUri = result.getData().getData();
+                    uploadImageToFirebase(imageUri);
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == getActivity().RESULT_OK) {
+                    uploadImageToFirebase(imageUri);
+                }
+            }
+    );
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        if (imageUri == null || username == null) return;
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference("profile_images/" + username + ".jpg");
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                    saveImageUrlToFirestore(uri.toString());
+                }))
+                .addOnFailureListener(e -> Toast.makeText(getContext(), "Upload failed!", Toast.LENGTH_SHORT).show());
+    }
+
+    private void saveImageUrlToFirestore(String imageUrl) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", username);
+        data.put("profileImageUrl", imageUrl);
+
+        db.collection("profile_pictures").document(username)
+                .set(data)
+                .addOnSuccessListener(unused -> Toast.makeText(getContext(), "Profile picture updated!", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to update!", Toast.LENGTH_SHORT).show());
     }
 
     private void handleLogout() {

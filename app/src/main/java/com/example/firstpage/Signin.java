@@ -41,7 +41,7 @@ import java.util.HashMap;
 public class Signin extends AppCompatActivity {
 
     private EditText txtEmail, LastPass;
-    private Button Loginbtn, google_sign_in_btn;
+    private Button Loginbtn, google_sign_in_btn,forgotPasswordButton;
     private ProgressBar progressBar;
     private GoogleSignInOptions gso;
     private FirebaseAuth firebase;
@@ -82,6 +82,7 @@ public class Signin extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         google_sign_in_btn = findViewById(R.id.google_sign_in_btn);
         videoView = findViewById(R.id.videoViewBackground);
+        forgotPasswordButton = findViewById(R.id.btn_forgot_password);
 
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.mbgblur);
         videoView.setVideoURI(uri);
@@ -101,6 +102,7 @@ public class Signin extends AppCompatActivity {
 
         google_sign_in_btn.setOnClickListener(v -> signIn());
         Loginbtn.setOnClickListener(v -> signUpUser());
+        forgotPasswordButton.setOnClickListener(v -> resetPassword());
     }
 
     private void signIn() {
@@ -226,6 +228,37 @@ public class Signin extends AppCompatActivity {
                         }
                     } else {
                         Toast.makeText(Signin.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void resetPassword() {
+        String email = txtEmail.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)) {
+            txtEmail.setError("Enter your registered email.");
+            txtEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            txtEmail.setError("Enter a valid email.");
+            txtEmail.requestFocus();
+            return;
+        }
+
+        sendPasswordResetEmail(email);
+    }
+
+    private void sendPasswordResetEmail(String email) {
+        progressBar.setVisibility(View.VISIBLE);
+        firebase.sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    progressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        Toast.makeText(Signin.this, "Reset email sent successfully. Check your inbox.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(Signin.this, "Error sending reset email. Try again.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

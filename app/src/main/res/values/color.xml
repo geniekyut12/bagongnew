@@ -21,4 +21,8 @@
         <color name="quizgreen">#97C97A</color>
         <color name="mintgreen">#E5F4D9</color>
         <color name="homepagebg">#F9FFF1</color>
+        <color name="main">#E1E1E1</color>
+        <color name="darkG">#047B45</color>
+
+        <color name="white">#FFFFFFFF</color>
 </resources>

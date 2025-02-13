@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="18dp"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/personal"
             android:textColor="#000000"
             android:textSize="22sp"
@@ -64,10 +64,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_marginTop="4dp"
-                android:fontFamily="@font/poppinsregular"
+                android:fontFamily="@font/poppins_italic"
                 android:gravity="start"
+                android:singleLine="true"
                 android:text="@string/Firstname"
-                android:textColor="@color/Green"
+                android:textColor="@color/Brown"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,8 +78,8 @@
             android:layout_height="65dp"
             android:layout_marginBottom="16dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/Green"
-            app:hintTextColor="@color/Green">
+            app:hintTextColor="@color/Brown"
+            android:textColorHint="@color/Brown">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtAge"
@@ -88,7 +89,7 @@
                 android:maxLength="2"
                 android:inputType="number"
                 android:singleLine="true"
-                android:textColor="@color/Green"
+                android:textColor="@color/Brown"
                 android:textSize="20sp"
                 android:fontFamily="@font/poppinsregular"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -109,9 +110,9 @@
                 android:layout_marginTop="4dp"
                 android:gravity="start"
                 android:text="@string/Username"
-                android:textColor="@color/Green"
+                android:textColor="@color/Brown"
                 android:textSize="20sp"
-                android:fontFamily="@font/poppinsregular"/>
+                android:fontFamily="@font/poppins_italic"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -120,22 +121,24 @@
             android:layout_marginTop="4dp"
             android:gravity="start"
             android:text="@string/gender"
-            android:textColor="@color/Green"
+            android:textColor="@color/Brown"
             android:textSize="16sp"
-            android:fontFamily="@font/poppinsregular"/>
+            android:fontFamily="@font/poppinsmedium"/>
 
         <RadioGroup
             android:id="@+id/radioGroupQ1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <RadioButton
                 android:id="@+id/btnFMale"
-                android:layout_width="130dp"
+                android:layout_width="127dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/q3choices"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/coolgreen"
                 android:fontFamily="@font/poppinsregular"
                 android:minHeight="48dp"
                 android:padding="12dp"
@@ -145,10 +148,11 @@
 
             <RadioButton
                 android:id="@+id/btnMale"
-                android:layout_width="126dp"
+                android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/q3choices"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/coolgreen"
                 android:fontFamily="@font/poppinsregular"
                 android:minHeight="48dp"
                 android:padding="12dp"
@@ -161,7 +165,7 @@
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/q3choices"
+                android:background="@drawable/coolgreen"
                 android:fontFamily="@font/poppinsregular"
                 android:minHeight="48dp"
                 android:padding="12dp"
@@ -183,16 +187,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                app:hintTextColor="@color/Brown"
+                android:textColorHint="@color/Green"
                 app:boxBackgroundMode="outline">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtHeight"
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
+                    android:layout_height="53dp"
+                    android:fontFamily="@font/poppinsmedium"
                     android:hint="@string/height"
-                    android:maxLength="3"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/Green"
+                    android:maxLength="3"
+                    android:textColor="@color/Brown"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,16 +212,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                app:hintTextColor="@color/Brown"
+                android:textColorHint="@color/Green"
                 app:boxBackgroundMode="outline">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtWeight"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
+                    android:fontFamily="@font/poppinsmedium"
                     android:hint="@string/weight"
-                    android:maxLength="3"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/Green"
+                    android:maxLength="3"
+                    android:textColor="@color/Brown"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -225,6 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/calculateBMI"
+            android:background="@drawable/coolgreen"
             android:fontFamily="@font/poppins_semibold_italic"/>
 
     <LinearLayout
@@ -238,12 +249,12 @@
             android:id="@+id/BMI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:gravity="start"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:text="@string/BMI"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:fontFamily="@font/poppinsregular"/>
+            android:textColor="@color/Brown"
+            android:textSize="21sp"
+            android:fontFamily="@font/poppinsmedium"/>
 
         <TextView
             android:id="@+id/bmistatus"
@@ -253,7 +264,7 @@
             android:gravity="center"
             android:fontFamily="@font/poppins_semibold_italic"
             android:text="@string/BMIStatus"
-            android:textColor="@color/grayG"
+            android:textColor="@color/Brown"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/BMI"/>
@@ -262,18 +273,17 @@
             android:id="@+id/BMIimage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/normal_weight"
+            app:srcCompat="@drawable/defweight"
             app:layout_constraintTop_toBottomOf="@id/bmistatus"/>
 
-
     </LinearLayout>
-
 
         <Button
             android:id="@+id/btn1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/calculate"
             android:text="@string/nextbtn" />
     </LinearLayout>
     </LinearLayout>

@@ -183,6 +183,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppinsregular"
         android:text="@string/Password"
         android:textColor="#000000"
@@ -191,23 +192,26 @@
         tools:layout_editor_absoluteY="576dp"
         app:layout_constraintTop_toBottomOf="@id/usernameEdit"/>
 
-    <EditText
+    <Button
         android:id="@+id/inputpass"
         android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/input_background"
-        android:fontFamily="@font/poppinsregular"
-        android:hint="@string/Password"
-        android:padding="8dp"
-        android:textColor="#000000"
-        android:textColorHint="#9E9E9E"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="47dp"
+        android:text="@string/ChangePass"
+        android:background="@drawable/q1pop_des"
+        android:fontFamily="@font/poppins_italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editpass" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editpass"/>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputpass"/>
 
 
     <!-- Save Changes Button -->
@@ -220,11 +224,13 @@
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/bday"
         android:backgroundTint="#1A8433"
-        android:fontFamily="@font/poppinsregular"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/Savechanges"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputpass"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

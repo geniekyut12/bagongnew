@@ -48,8 +48,10 @@ public class HomeFragment extends Fragment {
         linearLayoutB = view.findViewById(R.id.linearLayoutBarrier);
         linearLayoutEnvi = view.findViewById(R.id.linearLayoutEnvironment);
 
-        // Set click listener for Track Trip button to navigate within fragments
-        btnTrackTrip.setOnClickListener(v -> replaceFragment(new TransportationFragment()));
+        btnTrackTrip.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), Transportation.class);
+            startActivity(intent);
+        });
 
         // Set click listeners for food items to navigate to specific activities
          fooditem2.setOnClickListener(v -> replaceFragment(new Bfast2ragment()));

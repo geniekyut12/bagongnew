@@ -143,7 +143,7 @@
     <string name="totalcarbon">0.00 g CO₂</string>
     <string name="Walk">Walking</string>
     <string name="Bikebtn">Bike</string>
-    <string name="log_out">LOGOUT</string>
+    <string name="log_out">Logout</string>
     <string name="aboutcv">About\nC-Verde</string>
     <string name="cv_fb">C-Verde</string>
     <string name="cv_email">c.verde0101@gmail.com</string>
@@ -201,7 +201,7 @@
 
     <string name="Tellusaboutyourself">Tell us about yourself</string>
     <string name="nametxt">First Name</string>
-    <string name="names">Juan</string>
+    <string name="names"></string>
     <string name="lastnames">Dela Cruz</string>
     <string name="date">Date of Birth</string>
     <string name="Savechanges">Save Changes</string>
@@ -398,6 +398,8 @@
     <string name="capturebtn">Capture Image</string>
     <string name="gallery">Select from Gallery</string>
     <string name="result">Results will appear here</string>
+    <string name="ChangePass">Update my Password now</string>
+    <string name="listofproj"><![CDATA[Acheivement & Badges]]></string>
     <string-array name="dropdown_options">
         <item>Chicken</item>
         <item>Dairy</item>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/textViewDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distance Traveled: 0 meters"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/textViewCarbon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CO₂ Emission: 0 kg"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="10dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerTravelMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Tracking"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/green_button"
+        android:padding="10dp"
+        android:stateListAnimator="@null"/>
+
+
+</LinearLayout>

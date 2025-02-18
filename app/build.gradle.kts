@@ -38,7 +38,7 @@ android {
 
     dependencies {
         implementation(libs.appcompat)
-        implementation(libs.material) // Ensure `libs.material` points to version 1.9.0 or your preferred version.
+        implementation(libs.material)
         implementation(libs.activity)
         implementation(libs.constraintlayout)
         implementation(libs.firebase.auth)
@@ -57,21 +57,16 @@ android {
         implementation("com.google.firebase:firebase-database")
         implementation("com.google.android.gms:play-services-auth:21.2.0")
 
+        // ML Kit Dependencies
+        implementation(libs.vision.common)
+        implementation(libs.image.labeling.common)
+        implementation(libs.image.labeling.default.common)
+        implementation(libs.play.services.location)
+        implementation(libs.mlkit.image.labeling)
+        implementation(libs.firebase.storage)
+
+        // MPAndroidChart for PieChart
+        implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
     }
 }
-dependencies {
-    implementation(libs.vision.common)
-    implementation(libs.image.labeling.common)
-    implementation(libs.image.labeling.default.common)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
-    implementation(libs.play.services.location)
-    implementation(libs.cardview)
-    implementation(libs.mlkit.image.labeling)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.database)
-    implementation(libs.play.services.auth)
-    implementation(libs.firebase.storage)
-}
+

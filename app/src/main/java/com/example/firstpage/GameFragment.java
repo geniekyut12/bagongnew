@@ -4,17 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,10 +29,12 @@ import java.util.Locale;
 
 public class GameFragment extends Fragment {
 
-    private TextView tvDate, tvMonthYear, tvStreakCount, tvAttendanceStatus;
+    private TextView tvDate, tvMonthYear, tvStreakCount, tvAttendanceStatus, tvTotalPoints;
     private ImageView ivCheckmark;
     private int streakCount = 0;  // Variable to store the streak count
     private SharedPreferences sharedPreferences;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     public GameFragment() {
         // Required empty public constructor
@@ -47,6 +56,11 @@ public class GameFragment extends Fragment {
         tvStreakCount = view.findViewById(R.id.tvStreakCount);
         tvAttendanceStatus = view.findViewById(R.id.tvAttendanceStatus);
         ivCheckmark = view.findViewById(R.id.ivCheckmark);
+        tvTotalPoints = view.findViewById(R.id.TotalP); // TextView for total points
+
+        // Initialize Firebase Auth and Firestore
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         // Initialize SharedPreferences
         sharedPreferences = getActivity().getSharedPreferences("GamePrefs", Context.MODE_PRIVATE);
@@ -67,15 +81,55 @@ public class GameFragment extends Fragment {
                 openActivity(Game.class);  // Start Game activity
             }
         });
+
+        view.findViewById(R.id.feature2B).setOnClickListener(v -> {
+            if (getActivity() != null) {
+                openActivity(LeaderBoards.class);
+            }
+        });
+
         view.findViewById(R.id.quizB).setOnClickListener(v -> replaceFragment(new QuizFrag()));
         view.findViewById(R.id.feature1B).setOnClickListener(v -> replaceFragment(new VideoFrag()));
-        view.findViewById(R.id.feature2B).setOnClickListener(v -> replaceFragment(new LeaderBordsFrag()));
 
         // Mark attendance button
         view.findViewById(R.id.btnMarkAttendance).setOnClickListener(this::markAttendance);
 
         // Check if it's a new day and reset attendance button if necessary
         checkAndResetAttendance(lastMarkedDate);
+
+        // Fetch the points for the current user
+        fetchAndUpdatePoints();
+    }
+
+    private void fetchAndUpdatePoints() {
+        // Get the logged-in username
+        String username = mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getDisplayName() : null;
+
+        if (username == null || username.isEmpty()) {
+            Toast.makeText(getActivity(), "Error: Username not found!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Firestore reference to the Games collection
+        DocumentReference gameRef = db.collection("Games").document(username);
+
+        // Fetch the document for the logged-in user
+        gameRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists() && documentSnapshot.contains("points")) {
+                // Retrieve points from Firestore document
+                int points = documentSnapshot.getLong("points").intValue();
+
+                // Update the UI with the points
+                tvTotalPoints.setText(String.format(Locale.getDefault(), "Total Points: %d", points));
+            } else {
+                // Handle the case where the document doesn't exist or doesn't contain points
+                tvTotalPoints.setText("Total Points: 0");
+            }
+        }).addOnFailureListener(e -> {
+            // Handle error fetching data
+            Log.e("GameFragment", "Error fetching points", e);
+            Toast.makeText(getActivity(), "Error fetching points", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void markAttendance(View view) {

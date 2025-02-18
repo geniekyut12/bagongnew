@@ -9,11 +9,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class AfterQuestion extends AppCompatActivity {
 
@@ -55,37 +56,40 @@ public class AfterQuestion extends AppCompatActivity {
         }
 
         // Firestore references for both collections
-        DocumentReference foodRef = db.collection("food_source").document(username);
+        DocumentReference foodRef = db.collection("food_sources").document(username);
         DocumentReference transpoRef = db.collection("transportation").document(username);
 
-        // Use AtomicReference to hold mutable values inside lambdas
-        AtomicReference<Double> foodCarbon = new AtomicReference<>(0.0);
-        AtomicReference<Double> transpoCarbon = new AtomicReference<>(0.0);
+        // Fetch both documents asynchronously
+        Task<DocumentSnapshot> foodTask = foodRef.get();
+        Task<DocumentSnapshot> transpoTask = transpoRef.get();
 
-        // Fetch carbon data from food_source
-        foodRef.get().addOnSuccessListener(foodDoc -> {
+        Tasks.whenAllSuccess(foodTask, transpoTask).addOnSuccessListener(results -> {
+            double foodCarbon = 0.0;
+            double transpoCarbon = 0.0;
+
+            DocumentSnapshot foodDoc = (DocumentSnapshot) results.get(0);
+            DocumentSnapshot transpoDoc = (DocumentSnapshot) results.get(1);
+
             if (foodDoc.exists() && foodDoc.contains("total_carbon_footprint")) {
                 String foodCarbonStr = foodDoc.getString("total_carbon_footprint");
-                foodCarbon.set(parseCarbonValue(foodCarbonStr));
+                foodCarbon = parseCarbonValue(foodCarbonStr);
             }
 
-            // Fetch carbon data from transportation
-            transpoRef.get().addOnSuccessListener(transpoDoc -> {
-                if (transpoDoc.exists() && transpoDoc.contains("total_carbon_footprint")) {
-                    String transpoCarbonStr = transpoDoc.getString("total_carbon_footprint");
-                    transpoCarbon.set(parseCarbonValue(transpoCarbonStr));
-                }
+            if (transpoDoc.exists() && transpoDoc.contains("total_carbon_footprint")) {
+                String transpoCarbonStr = transpoDoc.getString("total_carbon_footprint");
+                transpoCarbon = parseCarbonValue(transpoCarbonStr);
+            }
 
-                // Compute the total carbon footprint
-                totalCarbon = foodCarbon.get() + transpoCarbon.get();
+            // Compute the total carbon footprint
+            totalCarbon = foodCarbon + transpoCarbon;
 
-                // Log the total carbon footprint
-                Log.d(TAG, "Total Carbon Footprint: " + totalCarbon + " kg CO₂");
+            // Log the total carbon footprint
+            Log.d(TAG, "Total Carbon Footprint: " + totalCarbon + " kg CO₂");
 
-                // Display the result in the TextView
-                tvTotalCarbon.setText(String.format("%.2f kg CO₂", totalCarbon));
-            }).addOnFailureListener(e -> Log.e(TAG, "Error fetching transportation data", e));
-        }).addOnFailureListener(e -> Log.e(TAG, "Error fetching food data", e));
+            // Display the result in the TextView
+            tvTotalCarbon.setText(String.format("%.2f kg CO₂", totalCarbon));
+
+        }).addOnFailureListener(e -> Log.e(TAG, "Error fetching data", e));
     }
 
     private void saveTotalCarbonToFirestore(double totalCarbon) {

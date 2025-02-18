@@ -9,6 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven("https://jitpack.io") // Moved outside google block
     }
 }
 
@@ -17,7 +18,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-
+        maven("https://jitpack.io") // Added here
     }
 }
 

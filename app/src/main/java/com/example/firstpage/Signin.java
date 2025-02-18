@@ -1,6 +1,5 @@
 package com.example.firstpage;
 
-// Android imports
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -16,18 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-// AndroidX
 import androidx.appcompat.app.AppCompatActivity;
 
-// Google Sign-In
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
-
-// Firebase
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,13 +30,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-// Java utilities
 import java.util.HashMap;
 
 public class Signin extends AppCompatActivity {
 
     private EditText txtEmail, LastPass;
-    private Button Loginbtn, google_sign_in_btn,forgotPasswordButton;
+    private Button Loginbtn, google_sign_in_btn, forgotPasswordButton;
     private ProgressBar progressBar;
     private GoogleSignInOptions gso;
     private FirebaseAuth firebase;
@@ -187,78 +181,43 @@ public class Signin extends AppCompatActivity {
         }
 
         progressBar.setVisibility(View.VISIBLE);
-
-        if (Patterns.EMAIL_ADDRESS.matcher(input).matches()) {
-            loginWithEmail(input, password);
-        } else {
-            db.collection("users")
-                    .whereEqualTo("username", input)
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                            String email = task.getResult().getDocuments().get(0).getString("email");
-                            loginWithEmail(email, password);
-                        } else {
-                            progressBar.setVisibility(View.GONE);
-                            txtEmail.setError("Username not found.");
-                            txtEmail.requestFocus();
-                        }
-                    });
-        }
-    }
-
-    private void loginWithEmail(String email, String password) {
-        firebase.signInWithEmailAndPassword(email, password)
+        firebase.signInWithEmailAndPassword(input, password)
                 .addOnCompleteListener(this, task -> {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebase.getCurrentUser();
-                        if (user != null && user.isEmailVerified()) {
+                        if (user != null) {
+                            // Successful login, save preference and move to next screen
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean(PREF_IS_LOGGED_IN, true);
                             editor.apply();
 
                             startActivity(new Intent(Signin.this, Loadingpage.class));
                             finish();
-                        } else if (user != null && !user.isEmailVerified()) {
-                            Toast.makeText(Signin.this, "Please verify your email before logging in.", Toast.LENGTH_SHORT).show();
-                            firebase.signOut();
-                        } else {
-                            Toast.makeText(Signin.this, "User not found.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(Signin.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("Email Sign-In", "Sign-in failed: " + task.getException());
+                        Toast.makeText(Signin.this, "Sign-in failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private void resetPassword() {
         String email = txtEmail.getText().toString().trim();
-
         if (TextUtils.isEmpty(email)) {
-            txtEmail.setError("Enter your registered email.");
+            txtEmail.setError("Email is required.");
             txtEmail.requestFocus();
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            txtEmail.setError("Enter a valid email.");
-            txtEmail.requestFocus();
-            return;
-        }
-
-        sendPasswordResetEmail(email);
-    }
-
-    private void sendPasswordResetEmail(String email) {
         progressBar.setVisibility(View.VISIBLE);
         firebase.sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
-                        Toast.makeText(Signin.this, "Reset email sent successfully. Check your inbox.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signin.this, "Password reset email sent.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(Signin.this, "Error sending reset email. Try again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signin.this, "Error sending reset email.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -255,7 +255,7 @@
     <string name="Categories">Categories</string>
     <string name="quiz">Quiz</string>
     <string name="video">Videos</string>
-    <string name="leadersh">Leadership</string>
+    <string name="leadersh">Leaderboards</string>
     <string name="datetoday">February 2025</string>
     <string name="daytoday">Tuesday</string>
     <string name="foodprint">Foodprint Facts</string>
@@ -399,7 +399,7 @@
     <string name="gallery">Select from Gallery</string>
     <string name="result">Results will appear here</string>
     <string name="ChangePass">Update my Password now</string>
-    <string name="listofproj"><![CDATA[Acheivement & Badges]]></string>
+    <string name="listofproj"><![CDATA[Achievements & Badges]]></string>
     <string-array name="dropdown_options">
         <item>Chicken</item>
         <item>Dairy</item>

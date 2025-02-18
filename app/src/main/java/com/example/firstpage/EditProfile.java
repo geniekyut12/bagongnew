@@ -143,19 +143,21 @@ public class EditProfile extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         showToast("Reset email sent successfully. Check your inbox.");
-                        redirectToHomePage();
+                        redirectToProfileFragment();
                     } else {
                         showToast("Error sending reset email. Try again.");
                     }
                 });
     }
 
-    private void redirectToHomePage() {
-        Intent intent = new Intent(EditProfile.this, ProfileFragment.class); // Change HomePage.class to your actual homepage activity
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+    private void redirectToProfileFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new ProfileFragment()) // Ensure you have a valid container ID
+                .addToBackStack(null) // Optional: Allows back navigation
+                .commit();
     }
+
 
 
     private void showToast(String message) {

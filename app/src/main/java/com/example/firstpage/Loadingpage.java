@@ -49,7 +49,7 @@ public class Loadingpage extends AppCompatActivity {
 
     private void redirectToHomepage() {
         if (!isFinishing()) {
-            Intent intent = new Intent(Loadingpage.this, Questions.class);
+            Intent intent = new Intent(Loadingpage.this, Question1.class);
             startActivity(intent);
             finish();
         }

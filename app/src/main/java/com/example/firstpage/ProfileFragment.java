@@ -1,7 +1,5 @@
 package com.example.firstpage;
 
-import static android.content.ContentValues.TAG;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,13 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -29,10 +25,13 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import java.io.File;
 import java.util.HashMap;
@@ -40,14 +39,16 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
+    private static final String PREFS_NAME = "loginPrefs";
+    private static final String PREF_IS_LOGGED_IN = "isLoggedIn";
     private TextView titleName;
-    private LinearLayout logoutButton,editButton;
-
+    private LinearLayout logoutButton, editButton;
     private ImageView profileImg;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private Uri imageUri;
     private String username;
+    private GoogleSignInOptions gso; // Google SignIn options
 
     public ProfileFragment() {
         // Default constructor
@@ -63,17 +64,19 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize views
         initializeViews(view);
 
         // Initialize Firebase instances
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Fetch user data
-        fetchUserData();
+        // Initialize Google Sign-In options
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
-        // Set up listeners
+        fetchUserData();
         setupListeners();
     }
 
@@ -91,34 +94,39 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         });
 
-        // Profile image click listener for uploading
         profileImg.setOnClickListener(v -> selectImageSource());
     }
 
     private void fetchUserData() {
-        if (mAuth.getCurrentUser() != null) {
-            username = mAuth.getCurrentUser().getDisplayName(); // Use display name as username
-
-            DocumentReference userDocRef = db.collection("users").document(username);
-            userDocRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful() && task.getResult().exists()) {
-                    String firstName = task.getResult().getString("firstName");
-
-                    if (firstName != null) {
-                        titleName.setText(firstName);
-                    }
-                } else {
-                    Log.d("ProfileFragment", "User data not found.");
-                    Toast.makeText(getContext(), "User data not found.", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
             Log.d("ProfileFragment", "No user logged in.");
             Toast.makeText(getContext(), "No user logged in.", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        username = currentUser.getDisplayName();
+        if (username == null || username.isEmpty()) {
+            username = currentUser.getUid(); // Fallback to UID if display name is not set
+        }
+
+        DocumentReference userDocRef = db.collection("users").document(username);
+        userDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult().exists()) {
+                String firstName = task.getResult().getString("firstName");
+                if (firstName != null) {
+                    titleName.setText(firstName);
+                }
+            } else {
+                Log.d("ProfileFragment", "User data not found.");
+                Toast.makeText(getContext(), "User data not found.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void selectImageSource() {
+        if (getContext() == null) return;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Choose an option")
                 .setItems(new CharSequence[]{"Camera", "Gallery"}, (dialog, which) -> {
@@ -132,6 +140,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void openCamera() {
+        if (getActivity() == null) return;
+
         File photoFile = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "profile.jpg");
         imageUri = FileProvider.getUriForFile(getContext(), getActivity().getPackageName() + ".provider", photoFile);
 
@@ -148,7 +158,7 @@ public class ProfileFragment extends Fragment {
     private final ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == getActivity().RESULT_OK && result.getData() != null) {
+                if (getActivity() != null && result.getResultCode() == getActivity().RESULT_OK && result.getData() != null) {
                     imageUri = result.getData().getData();
                     uploadImageToFirebase(imageUri);
                 }
@@ -158,7 +168,7 @@ public class ProfileFragment extends Fragment {
     private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == getActivity().RESULT_OK) {
+                if (getActivity() != null && result.getResultCode() == getActivity().RESULT_OK) {
                     uploadImageToFirebase(imageUri);
                 }
             }
@@ -176,6 +186,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void saveImageUrlToFirestore(String imageUrl) {
+        if (username == null) return;
+
         Map<String, Object> data = new HashMap<>();
         data.put("username", username);
         data.put("profileImageUrl", imageUrl);
@@ -187,26 +199,28 @@ public class ProfileFragment extends Fragment {
     }
 
     private void handleLogout() {
-        if (mAuth.getCurrentUser() != null) {
-            mAuth.signOut();
+        // Step 1: Sign out from Firebase
+        FirebaseAuth.getInstance().signOut();
 
-            // Clear login preferences
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isLoggedIn", false);
-            editor.apply();
+        // Step 2: Sign out from Google Sign-In (if applicable)
+        GoogleSignIn.getClient(getContext(), gso).signOut()
+                .addOnCompleteListener(task -> {
+                    // Step 3: Clear SharedPreferences
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(PREF_IS_LOGGED_IN, false);
+                    editor.apply();
 
-            Toast.makeText(getContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "User logged out successfully");
+                    // Step 4: Redirect to SignIn activity
+                    Intent intent = new Intent(getActivity(), Signin.class);
+                    startActivity(intent);
 
-            // Redirect to login screen
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            getActivity().finish();
-        } else {
-            Toast.makeText(getContext(), "No user logged in", Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "Attempted to log out but no user was logged in");
-        }
+                    // Step 5: Finish the ProfileFragment to prevent going back to it
+                    getActivity().finish();
+                })
+                .addOnFailureListener(e -> {
+                    // Handle any errors here
+                    Log.e("Google Sign-Out", "Failed to sign out: " + e.getMessage());
+                });
     }
 }

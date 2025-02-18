@@ -1,60 +1,74 @@
 package com.example.firstpage;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FootPrintFragment extends Fragment {
 
-    private static final String TAG = "FootPrintFragment";
+    private PieChart pieChart;
+    private TextView headerText, co1, co2;
 
     public FootPrintFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_foot_print_fragment, container, false);
 
-        // Initialize views
-        TextView headerText = view.findViewById(R.id.headerText);
-        LinearLayout linearLayout1 = view.findViewById(R.id.linearLayout1);
-        LinearLayout linearLayout2 = view.findViewById(R.id.linearLayout2);
-        LinearLayout linearLayout3 = view.findViewById(R.id.linearLayout3);
+        headerText = view.findViewById(R.id.headerText);
+        co1 = view.findViewById(R.id.co1);
+        co2 = view.findViewById(R.id.co2);
+        pieChart = view.findViewById(R.id.pieChart);
+
         ImageView arrowButton1 = view.findViewById(R.id.arrowButton1);
         ImageView arrowButton2 = view.findViewById(R.id.arrowButton2);
-        TextView co1 = view.findViewById(R.id.co1); // TextView for transportation data
 
-        // Retrieve the currently logged-in user
+        fetchUserData();
+        fetchCarbonFootprintData();
+
+        arrowButton1.setOnClickListener(v -> {});
+        arrowButton2.setOnClickListener(v -> {});
+
+        return view;
+    }
+
+    private void fetchUserData() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String userId = user.getUid();
-            String username = user.getDisplayName(); // Assuming the username is available as display name
-            Log.d(TAG, "User ID: " + userId + ", Username: " + username);
+        if (user == null) {
+            headerText.setText("Hello, Guest");
+            return;
+        }
 
-            // Initialize Firestore once
+        String displayName = user.getDisplayName();
+        if (displayName != null && !displayName.isEmpty()) {
+            headerText.setText("Hello, " + displayName);
+        } else {
+            String userId = user.getUid();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-            // Reference to the user's data in the "users" collection to get firstName and lastName
-            db.collection("users").document(username)  // Use 'username' as the document ID
-                    .get()
+            db.collection("users").document(userId).get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
@@ -62,69 +76,91 @@ public class FootPrintFragment extends Fragment {
                                 String firstName = document.getString("firstName");
                                 String lastName = document.getString("lastName");
 
-                                // Log the first name and last name to verify they are being retrieved correctly
-                                Log.d(TAG, "First Name: " + firstName);
-                                Log.d(TAG, "Last Name: " + lastName);
-
-                                // Set the name in the header
-                                if (firstName != null && lastName != null) {
-                                    headerText.setText("Hello, " + firstName + " " + lastName);
-                                } else {
+                                if (firstName == null && lastName == null) {
                                     headerText.setText("Hello, User");
-                                    Log.e(TAG, "First name or last name is missing for user: " + username);
+                                } else {
+                                    String greeting = "Hello, " + (firstName != null ? firstName : "") + " " + (lastName != null ? lastName : "");
+                                    headerText.setText(greeting.trim());
                                 }
                             } else {
-                                Log.e(TAG, "No such document exists for the user: " + username);
                                 headerText.setText("Hello, User");
                             }
                         } else {
-                            Log.e(TAG, "Error getting document: " + task.getException());
-                            headerText.setText("Hello, User");
+                            headerText.setText("Failed to load user data");
                         }
+                    })
+                    .addOnFailureListener(e -> {
+                        headerText.setText("Error retrieving data");
                     });
+        }
+    }
 
-            // Fetch carbon footprint data for the logged-in user based on username
-            db.collection("carbon_footprints")
-                    .whereEqualTo("username", username)
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            QuerySnapshot querySnapshot = task.getResult();
-                            if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                for (QueryDocumentSnapshot document : querySnapshot) {
-                                    // Get the data from the document
-                                    String transportationDetails = document.getString("Question1");
-                                    Double carbonFootprint = document.getDouble("carbonFootprint");
 
-                                    // Log the retrieved data
-                                    Log.d(TAG, "Transportation Details: " + transportationDetails);
-                                    Log.d(TAG, "Carbon Footprint: " + carbonFootprint);
 
-                                    // Set the carbon footprint in the TextView
-                                    if (carbonFootprint != null && transportationDetails != null) {
-                                        co1.setText("Transportation: " + transportationDetails + " - CO2: " + carbonFootprint + " kg");
-                                    } else {
-                                        co1.setText("No transportation data available.");
-                                    }
-                                }
-                            } else {
-                                co1.setText("No transportation data available.");
-                            }
-                        } else {
-                            Log.e(TAG, "Error retrieving carbon footprint data: " + task.getException());
-                            co1.setText("Error retrieving data.");
-                        }
-                    });
+    private void fetchCarbonFootprintData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
 
-        } else {
-            headerText.setText("Hello, Guest");
-            co1.setText("No transportation data available.");
-            Log.e(TAG, "User is not logged in");
+        String username = user.getDisplayName(); // Match stored document ID
+        if (username == null || username.isEmpty()) return;
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        final double[] transportEmission = {0};
+        final double[] foodEmission = {0};
+
+        // Fetch transportation data
+        db.collection("transportation").document(username).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                DocumentSnapshot document = task.getResult();
+                String transportationDetails = document.getString("transportDetails");
+                Double carbonFootprint = parseDouble(document.getString("total_carbon_footprint"));
+
+                if (carbonFootprint != null) {
+                    transportEmission[0] = carbonFootprint;
+                    co1.setText("Transportation: " + transportationDetails + " - CO2: " + carbonFootprint + " kg");
+                }
+            }
+            updatePieChart(transportEmission[0], foodEmission[0]);
+        });
+
+        // Fetch food source data
+        db.collection("food_sources").document(username).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                DocumentSnapshot document = task.getResult();
+                String foodDetails = document.getString("foodDetails");
+                Double foodFootprint = parseDouble(document.getString("total_carbon_footprint"));
+
+                if (foodFootprint != null) {
+                    foodEmission[0] = foodFootprint;
+                    co2.setText("Food: " + foodDetails + " - CO2: " + foodFootprint + " kg");
+                }
+            }
+            updatePieChart(transportEmission[0], foodEmission[0]);
+        });
+    }
+
+    private void updatePieChart(double transportEmission, double foodEmission) {
+        List<PieEntry> entries = new ArrayList<>();
+        if (transportEmission > 0) {
+            entries.add(new PieEntry((float) transportEmission, "Transport"));
+        }
+        if (foodEmission > 0) {
+            entries.add(new PieEntry((float) foodEmission, "Food"));
         }
 
+        PieDataSet dataSet = new PieDataSet(entries, "Carbon Footprint");
+        dataSet.setColors(new int[]{Color.parseColor("#FFA726"), Color.parseColor("#66BB6A")});
+        dataSet.setValueTextSize(14f);
+        dataSet.setValueTextColor(Color.WHITE);
 
-        // Set click listeners for navigation buttons
-        arrowButton2.setOnClickListener(v -> startActivity(new Intent(getActivity(), Food.class)));
-        return view;
+        PieData pieData = new PieData(dataSet);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
+    }
+
+    private Double parseDouble(String value) {
+        if (value == null || !value.matches(".*\\d.*")) return 0.0;
+        return Double.parseDouble(value.replaceAll("[^\\d.]", ""));
     }
 }

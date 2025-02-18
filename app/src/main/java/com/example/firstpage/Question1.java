@@ -240,6 +240,6 @@ public class Question1 extends AppCompatActivity {
     }
 
     private void navigateToNext() {
-        startActivity(new Intent(Question1.this, Questions.class));
+        startActivity(new Intent(Question1.this, Question2.class));
     }
 }

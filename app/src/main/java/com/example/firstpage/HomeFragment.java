@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class HomeFragment extends Fragment {
 
     private Button btnTrackTrip;
-    private LinearLayout fooditem1, fooditem2;
+
     private LinearLayout linearLayoutBf, linearLayoutS, linearLayoutI, linearLayoutW, linearLayoutE,
             linearLayoutJ, linearLayoutB, linearLayoutEnvi;
 
@@ -36,10 +36,7 @@ public class HomeFragment extends Fragment {
 
         // Initialize the LinearLayouts for food items
 
-        fooditem2 = view.findViewById(R.id.fooditem2);
 
-        // Initialize the LinearLayouts for other clickable items
-        linearLayoutBf = view.findViewById(R.id.fooditem1);
         linearLayoutS = view.findViewById(R.id.linearLayoutSphere);
         linearLayoutI = view.findViewById(R.id.linearLayoutIce);
         linearLayoutW = view.findViewById(R.id.linearLayoutWeather);
@@ -53,11 +50,7 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        // Set click listeners for food items to navigate to specific activities
-         fooditem2.setOnClickListener(v -> replaceFragment(new Bfast2ragment()));
 
-        // Set up onClick listeners for each layout to navigate to activities
-        linearLayoutBf.setOnClickListener(v -> startNewActivity((Bfast1Fragment.class)));
         linearLayoutS.setOnClickListener(v -> startNewActivity(Sphere.class));
         linearLayoutI.setOnClickListener(v -> startNewActivity(Ice.class));
         linearLayoutW.setOnClickListener(v -> startNewActivity(Weather.class));

@@ -400,6 +400,7 @@
     <string name="result">Results will appear here</string>
     <string name="ChangePass">Update my Password now</string>
     <string name="listofproj"><![CDATA[Achievements & Badges]]></string>
+    <string name="bfast">Breakfast</string>
     <string-array name="dropdown_options">
         <item>Chicken</item>
         <item>Dairy</item>

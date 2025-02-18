@@ -34,7 +34,7 @@
 
         <!-- ViewPager2 (Use ViewPager2 instead of ViewPager) -->
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/inprog"
+            android:id="@+id/foodhomeM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -48,25 +48,30 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/inprogress"
+                android:text="@string/bfast"
                 tools:ignore="HardcodedText"/>
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/done"
+                android:text="@string/lunch"
+                tools:ignore="HardcodedText"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dinner"
                 tools:ignore="HardcodedText"/>
 
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/challenge"
+            android:id="@+id/homefood"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/inprog"
+            app:layout_constraintTop_toBottomOf="@id/foodhomeM"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -80,142 +85,7 @@
 
                 <!-- Food Item 1 -->
 
-                <!-- Food Item 2 -->
-                <LinearLayout
-                    android:id="@+id/fooditem1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/eggtoast"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
 
-                    <TextView
-                        android:id="@+id/timecal1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="138dp"
-                        android:gravity="center"
-                        android:text="@string/eggtoast"
-                        android:textColor="@android:color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/timerCaloriesLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/timecal1">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/homes" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:text="@string/eggtstmins"
-                            android:layout_marginTop="0dp"
-                            android:importantForAccessibility="yes"
-                            android:textSize="13sp" />
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="16dp"
-                            android:src="@drawable/metabolism" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/eggtstcal"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/fooditem2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/eggtoast"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/circle_background"
-                        android:src="@drawable/global_warming" />
-
-                    <TextView
-                        android:id="@+id/lunchh"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pancakes"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/white"
-                        android:gravity="center"
-                        android:layout_marginTop="8dp" />
-
-                    <LinearLayout
-                        android:id="@+id/timerCaloriesLayouts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/lunchh">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/homes" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:text="@string/mins"
-                            android:layout_marginTop="0dp"
-                            android:importantForAccessibility="yes"
-                            android:textSize="13sp" />
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginStart="16dp"
-                            android:src="@drawable/heart" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/eggtstcal"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-                </LinearLayout>
 
             </LinearLayout>
 
